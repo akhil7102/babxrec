@@ -47,10 +47,6 @@
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
-        .tab-active {
-            background: rgba(99, 102, 241, 0.2);
-            border-bottom: 2px solid #6366f1;
-        }
         .popup {
             position: fixed;
             top: 0;
@@ -104,7 +100,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <img src="https://i.imgur.com/qv3cKD6.png" alt="BabxRec Logo" class="logo-img">
+                        <img src="https://i.imgur.com/BUc9s66.png" alt="BabxRec Logo" class="logo-img">
                         <span class="ml-2 text-xl font-bold">BabxRec</span>
                     </div>
                 </div>
@@ -150,15 +146,25 @@
                     </div>
                     <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Capture Your Screen with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">BabxRec</span></h1>
                     <p class="text-xl text-gray-300 mb-8">A powerful, lightweight screen recorder for Windows. Created by BabxStudios and developed by Saketh to make screen recording effortless.</p>
-                    <div class="flex justify-center">
-                        <a href="https://drive.usercontent.google.com/download?id=10qoK6GmmNzJChMITbLAUKd8vKYyi9EaB&export=download&authuser=0&confirm=t&uuid=f2c3d4bd-9510-41d4-b9aa-be4ba7fc1a16&at=AN8xHop7NkX8V3XanfEG8MrTz6dq:1754208874666">
-                        <button class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button id="download-installer-hero" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                             </svg>
-                            Download Free
+                            <div class="flex flex-col items-start ml-1">
+                                <span>Download Installer</span>
+                                <span class="text-xs opacity-75">267 MB</span>
+                            </div>
                         </button>
-                        </a>
+                        <button id="download-portable-hero" class="bg-white hover:bg-gray-100 px-8 py-3 rounded-lg text-indigo-900 font-medium shadow-lg transition duration-300 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            <div class="flex flex-col items-start ml-1">
+                                <span>Download Portable</span>
+                                <span class="text-xs opacity-75">140 MB</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
                 <div class="md:w-1/2 mt-12 md:mt-0">
@@ -429,7 +435,6 @@
                                 <span>5-minute Recording Limit</span>
                             </li>
                         </ul>
-                        <!-- Free plan button removed -->
                     </div>
                 </div>
                 
@@ -477,7 +482,7 @@
                                 <span>Basic Editing Tools</span>
                             </li>
                         </ul>
-                        <a href="https://discord.gg/9HYYWyYNY7" target="_blank" class="w-full py-3 px-4 gradient-btn rounded-lg font-medium shadow-lg block text-center">
+                        <a href="https://discord.gg/example" target="_blank" class="w-full py-3 px-4 gradient-btn rounded-lg font-medium shadow-lg block text-center">
                             Get Pro
                         </a>
                     </div>
@@ -524,7 +529,7 @@
                                 <span>Priority Support</span>
                             </li>
                         </ul>
-                        <a href="https://discord.gg/9HYYWyYNY7" target="_blank" class="w-full py-3 px-4 border border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 block text-center">
+                        <a href="https://discord.gg/example" target="_blank" class="w-full py-3 px-4 border border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 block text-center">
                             Contact Sales
                         </a>
                     </div>
@@ -610,21 +615,31 @@
         </div>
     </section>
 
-<!-- CTA Section -->
+    <!-- CTA Section -->
     <section class="py-20 bg-indigo-900 bg-opacity-20">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Recording?</h2>
             <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Join thousands of content creators, educators, and professionals who trust BabxRec for their screen recording needs.</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="https://drive.usercontent.google.com/download?id=10qoK6GmmNzJChMITbLAUKd8vKYyi9EaB&export=download&authuser=0&confirm=t&uuid=f2c3d4bd-9510-41d4-b9aa-be4ba7fc1a16&at=AN8xHop7NkX8V3XanfEG8MrTz6dq:1754208874666">
-                <button class="gradient-btn px-8 py-4 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
+                <button id="download-installer-cta" class="gradient-btn px-8 py-4 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
-                    Download Free
+                    <div class="flex flex-col items-start ml-1">
+                        <span>Download Installer</span>
+                        <span class="text-xs opacity-75">267 MB</span>
+                    </div>
                 </button>
-                </a>
-                <a href="#" id="contact-sales-link" class="bg-white hover:bg-gray-100 px-8 py-4 rounded-lg text-indigo-900 font-medium shadow-lg transition duration-300 flex items-center justify-center">
+                <button id="download-portable-cta" class="bg-white hover:bg-gray-100 px-8 py-4 rounded-lg text-indigo-900 font-medium shadow-lg transition duration-300 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    <div class="flex flex-col items-start ml-1">
+                        <span>Download Portable</span>
+                        <span class="text-xs opacity-75">140 MB</span>
+                    </div>
+                </button>
+                <a href="#" id="contact-sales-link" class="border border-indigo-500 text-indigo-400 px-8 py-4 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center justify-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                     </svg>
@@ -640,31 +655,31 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center mb-4">
-                        <img src="https://i.imgur.com/qv3cKD6.png" alt="BabxRec Logo" class="footer-logo">
+                        <img src="https://i.imgur.com/BUc9s66.png" alt="BabxRec Logo" class="footer-logo">
                         <span class="ml-2 text-xl font-bold">BabxRec</span>
                     </div>
                     <p class="text-gray-400 mb-4">A powerful screen recorder for Windows, developed by Saketh at BabxStudios.</p>
                     <div class="flex space-x-4">
                         <!-- YouTube -->
-                        <a href="https://youtube.com/@mr_bangaram_playz?si=f5d-5xYwmeNbsa2L" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://www.youtube.com/channel/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                             </svg>
                         </a>
                         <!-- Instagram -->
-                        <a href="https://www.instagram.com/mr_bangaram_playz/" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://www.instagram.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
                             </svg>
                         </a>
                         <!-- Discord -->
-                        <a href="https://discord.gg/9HYYWyYNY7" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                             </svg>
                         </a>
                         <!-- GitHub -->
-                        <a href="https://github.com/SaakethPandu" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://github.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                             </svg>
@@ -706,7 +721,7 @@
                     <p class="text-gray-400 text-sm">© 2025 BabxRec. All rights reserved.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
                         <a href="#" id="privacy-policy-link" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" id="terms-of-service-link" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
                     </div>
                 </div>
             </div>
@@ -733,7 +748,7 @@
                             <div class="popup-card rounded-xl p-6">
                                 <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
                                     <div class="flex items-center mb-4 md:mb-0">
-                                        <h3 class="text-2xl font-bold">v1.2.0</h3>
+                                        <h3 class="text-2xl font-bold">v1.6.0</h3>
                                         <span class="ml-3 px-3 py-1 version-badge rounded-full text-xs font-medium">Current</span>
                                     </div>
                                     <span class="text-gray-400">July 2025</span>
@@ -758,12 +773,26 @@
                                         <span>Bug fixes and performance enhancements.</span>
                                     </li>
                                 </ul>
-                                <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                    </svg>
-                                    Download v1.2.0
-                                </button>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg flex items-center download-version" data-version="1.6.0" data-type="installer">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        <div class="flex flex-col items-start ml-1">
+                                            <span>Installer</span>
+                                            <span class="text-xs opacity-75">267 MB</span>
+                                        </div>
+                                    </button>
+                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.6.0" data-type="portable">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        <div class="flex flex-col items-start ml-1">
+                                            <span>Portable</span>
+                                            <span class="text-xs opacity-75">140 MB</span>
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
                             
                             <!-- Version 1.1.0 -->
@@ -792,12 +821,26 @@
                                         <span>Enhanced UI for easier navigation.</span>
                                     </li>
                                 </ul>
-                                <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                    </svg>
-                                    Download v1.1.0
-                                </button>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.1.0" data-type="installer">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        <div class="flex flex-col items-start ml-1">
+                                            <span>Installer</span>
+                                            <span class="text-xs opacity-75">267 MB</span>
+                                        </div>
+                                    </button>
+                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.1.0" data-type="portable">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        <div class="flex flex-col items-start ml-1">
+                                            <span>Portable</span>
+                                            <span class="text-xs opacity-75">140 MB</span>
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
                             
                             <!-- Version 1.0.0 -->
@@ -826,12 +869,26 @@
                                         <span>Export to MP4 format.</span>
                                     </li>
                                 </ul>
-                                <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                    </svg>
-                                    Download v1.0.0
-                                </button>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.0.0" data-type="installer">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        <div class="flex flex-col items-start ml-1">
+                                            <span>Installer</span>
+                                            <span class="text-xs opacity-75">267 MB</span>
+                                        </div>
+                                    </button>
+                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.0.0" data-type="portable">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                        </svg>
+                                        <div class="flex flex-col items-start ml-1">
+                                            <span>Portable</span>
+                                            <span class="text-xs opacity-75">140 MB</span>
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -928,7 +985,7 @@
                                         </svg>
                                         <div>
                                             <h4 class="font-semibold">Discord Community</h4>
-                                            <a href="https://discord.gg/9HYYWyYNY7" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join our Discord Server</a>
+                                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join our Discord Server</a>
                                         </div>
                                     </div>
                                 </div>
@@ -979,7 +1036,7 @@
                                         </svg>
                                         <div>
                                             <h4 class="font-semibold">Discord</h4>
-                                            <a href="https://discord.gg/9HYYWyYNY7" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join our Discord Server</a>
+                                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join our Discord Server</a>
                                         </div>
                                     </div>
                                 </div>
@@ -1013,7 +1070,7 @@
                             <div class="product-card rounded-xl p-6">
                                 <div class="flex flex-col md:flex-row">
                                     <div class="md:w-1/4 flex justify-center mb-4 md:mb-0">
-                                        <img src="https://i.imgur.com/qv3cKD6.png" alt="BabxRec Logo" class="h-24 w-auto">
+                                        <img src="https://i.imgur.com/nJOwJ6n.png" alt="BabxRec Logo" class="h-24 w-auto">
                                     </div>
                                     <div class="md:w-3/4 md:pl-6">
                                         <h3 class="text-2xl font-bold mb-2">BabxRec</h3>
@@ -1023,12 +1080,26 @@
                                             <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">Windows</span>
                                             <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">4K Support</span>
                                         </div>
-                                        <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg flex items-center">
-                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                            </svg>
-                                            Download
-                                        </button>
+                                        <div class="flex flex-col sm:flex-row gap-3">
+                                            <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg flex items-center download-version" data-version="latest" data-type="installer">
+                                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                                </svg>
+                                                <div class="flex flex-col items-start ml-1">
+                                                    <span>Installer</span>
+                                                    <span class="text-xs opacity-75">267 MB</span>
+                                                </div>
+                                            </button>
+                                            <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="latest" data-type="portable">
+                                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                                </svg>
+                                                <div class="flex flex-col items-start ml-1">
+                                                    <span>Portable</span>
+                                                    <span class="text-xs opacity-75">140 MB</span>
+                                                </div>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1062,7 +1133,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-4">
-                                            <a href="https://discord.gg/9HYYWyYNY7" target="_blank" class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center inline-flex">
+                                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center inline-flex">
                                                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                                                 </svg>
@@ -1140,6 +1211,72 @@
         </div>
     </div>
 
+    <!-- Terms of Service Popup -->
+    <div class="popup" id="terms-of-service-popup">
+        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-3xl font-bold">Terms of Service</h2>
+                            <button class="close-popup text-gray-400 hover:text-white">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="popup-card rounded-xl p-6">
+                                <h3 class="text-2xl font-bold mb-4">📄 Terms of Service – BabxRec</h3>
+                                <p class="text-gray-400 mb-4">Effective Date: July 28, 2025</p>
+                                <p class="text-gray-400 mb-6">Last Updated: July 28, 2025</p>
+                                
+                                <p class="text-gray-300 mb-6">Welcome to BabxRec, developed by BabxStudios. By downloading, installing, or using BabxRec, you agree to these Terms of Service. Please read them carefully.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">1. License</h4>
+                                <p class="text-gray-300 mb-6">BabxRec is licensed, not sold, to you.</p>
+                                <p class="text-gray-300 mb-6">You are granted a personal, non-exclusive, non-transferable license to use BabxRec on your devices.</p>
+                                <p class="text-gray-300 mb-6">You may not reverse engineer, modify, or distribute BabxRec without written permission from BabxStudios.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">2. Prohibited Use</h4>
+                                <p class="text-gray-300 mb-4">You agree not to:</p>
+                                <ul class="list-disc pl-6 mb-6 space-y-2 text-gray-300">
+                                    <li>Use BabxRec for illegal activities or copyright infringement.</li>
+                                    <li>Distribute the software without authorization.</li>
+                                    <li>Modify or attempt to bypass any licensing mechanisms.</li>
+                                </ul>
+                                
+                                <h4 class="text-xl font-semibold mb-3">3. Ownership</h4>
+                                <p class="text-gray-300 mb-6">BabxRec, including its code, design, and branding, is the intellectual property of BabxStudios. All rights are reserved.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">4. Updates & Changes</h4>
+                                <p class="text-gray-300 mb-6">BabxStudios may release updates to improve features or fix bugs. We reserve the right to modify or discontinue features without prior notice.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">5. Limitation of Liability</h4>
+                                <p class="text-gray-300 mb-6">BabxStudios is not responsible for any data loss, damages, or issues caused by the use of BabxRec.</p>
+                                <p class="text-gray-300 mb-6">You are solely responsible for how you use the software.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">6. Privacy</h4>
+                                <p class="text-gray-300 mb-6">Our Privacy Policy explains how we handle your data. By using BabxRec, you agree to the terms of our Privacy Policy.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">7. Termination</h4>
+                                <p class="text-gray-300 mb-6">BabxStudios may suspend or revoke your license if you violate these terms.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">8. Governing Law</h4>
+                                <p class="text-gray-300 mb-6">These Terms are governed by the laws of India. Any disputes will be resolved under applicable Indian law.</p>
+                                
+                                <h4 class="text-xl font-semibold mb-3">9. Contact Us</h4>
+                                <p class="text-gray-300 mb-1">📧 Email: <a href="mailto:support@babxstudios.com" class="text-indigo-400 hover:text-indigo-300">support@babxstudios.com</a></p>
+                                <p class="text-gray-300 mb-6">🌐 Website: <a href="https://babxrec.xyz" target="_blank" class="text-indigo-400 hover:text-indigo-300">https://babxrec.xyz</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1194,6 +1331,7 @@
         setupPopup(['contact-us-link', 'contact-sales-link'], 'contact-us-popup');
         setupPopup('our-products-link', 'our-products-popup');
         setupPopup('privacy-policy-link', 'privacy-policy-popup');
+        setupPopup('terms-of-service-link', 'terms-of-service-popup');
         
         // Close popup functionality
         const closeButtons = document.querySelectorAll('.close-popup');
@@ -1229,32 +1367,50 @@
             }
         });
         
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
+        // Download functionality
+        function downloadBabxRec(version, type) {
+            // Different download links for installer and portable versions
+            let downloadUrl;
+            
+            if (type === 'installer') {
+                // Installer version (267 MB)
+                downloadUrl = 'https://drive.usercontent.google.com/download?id=10qoK6GmmNzJChMITbLAUKd8vKYyi9EaB&export=download&authuser=0&confirm=t&uuid=f2c3d4bd-9510-41d4-b9aa-be4ba7fc1a16&at=AN8xHoqf_9kPHw7l4VbOIQFUvLgG%3A1754209033795';
+            } else if (type === 'portable') {
+                // Portable version (140 MB)
+                downloadUrl = 'https://drive.usercontent.google.com/download?id=10qoK6GmmNzJChMITbLAUKd8vKYyi9EaB&export=download&authuser=0&confirm=t&uuid=f2c3d4bd-9510-41d4-b9aa-be4ba7fc1a16&at=AN8xHoqf_9kPHw7l4VbOIQFUvLgG%3A1754209033795';
+            }
+            
+            // Create a temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = `BabxRec_${version}_${type}.exe`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Add event listeners for all download buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.download-version') || e.target.closest('#download-installer-hero') || e.target.closest('#download-portable-hero') || e.target.closest('#download-installer-cta') || e.target.closest('#download-portable-cta')) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                const button = e.target.closest('button');
+                let version = 'latest';
+                let type = 'installer';
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
+                if (button.hasAttribute('data-version')) {
+                    version = button.getAttribute('data-version');
                 }
-            });
+                
+                if (button.hasAttribute('data-type')) {
+                    type = button.getAttribute('data-type');
+                } else if (button.id.includes('portable')) {
+                    type = 'portable';
+                } else if (button.id.includes('installer')) {
+                    type = 'installer';
+                }
+                
+                downloadBabxRec(version, type);
+            }
         });
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9662a81b679031e2',t:'MTc1MzY4NzY3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
-
-
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969565e0327a85bf',t:'MTc1NDIxOTczNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
