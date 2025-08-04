@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabxRec - Screen Recorder by BabxStudios</title>
+    <meta name="description" content="BabxRec is a powerful, lightweight screen recorder for Windows. Created by BabxStudios and developed by Saketh to make screen recording effortless.">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/sVZrWUQ.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -91,28 +93,73 @@
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: block;
+        }
+        .nav-link.active {
+            color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.1);
+            border-radius: 6px;
+        }
+        .nav-link:hover {
+            color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.05);
+            border-radius: 6px;
+        }
+        .mobile-nav-link.active {
+            color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        .mobile-nav-link:hover {
+            color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.05);
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-opacity-80 bg-gray-900 backdrop-filter backdrop-blur-lg border-b border-gray-800">
+    <nav class="fixed w-full z-50 bg-opacity-90 bg-gray-900 backdrop-filter backdrop-blur-lg border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <img src="https://i.imgur.com/BUc9s66.png" alt="BabxRec Logo" class="logo-img">
+                    <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showPage('home')">
+                        <img src="https://i.imgur.com/sVZrWUQ.png" alt="BabxRec Logo" class="logo-img">
                         <span class="ml-2 text-xl font-bold">BabxRec</span>
                     </div>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Features</a>
-                    <a href="#how-it-works" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">How It Works</a>
-                    <a href="#" id="versions-link" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Versions</a>
-                    <a href="#pricing" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Pricing</a>
-                    <a href="#faq" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">FAQ</a>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="home">Home</a>
+                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="features">Features</a>
+                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="versions">Versions</a>
+                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="pricing">Pricing</a>
+                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="beta">Beta Program</a>
+                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="faq">FAQ</a>
+                    <button id="nav-signup-btn" class="ml-4 gradient-btn px-6 py-2 rounded-lg text-white font-medium text-sm" aria-label="Sign up for BabxRec">Sign Up</button>
+                    <div id="nav-user-menu" class="ml-4 relative hidden">
+                        <button id="nav-user-btn" class="flex items-center space-x-2 text-gray-300 hover:text-white px-3 py-2 rounded-lg hover:bg-gray-800 transition-all duration-200" aria-label="User menu">
+                            <div class="h-8 w-8 rounded-full bg-indigo-600 flex items-center justify-center">
+                                <span id="nav-user-initial" class="text-sm font-medium text-white">U</span>
+                            </div>
+                            <span id="nav-username" class="text-sm font-medium">User</span>
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div id="nav-user-dropdown" class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 hidden">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Settings</a>
+                                <hr class="border-gray-700 my-1">
+                                <button id="nav-logout-btn" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Sign Out</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex items-center">
-                    <button class="md:hidden ml-4 text-gray-300 hover:text-white" id="mobile-menu-button">
+                <div class="flex items-center md:hidden">
+                    <button class="text-gray-300 hover:text-white" id="mobile-menu-button" aria-label="Toggle mobile menu">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -124,530 +171,736 @@
         <!-- Mobile menu -->
         <div class="hidden md:hidden bg-gray-900 border-b border-gray-800" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Features</a>
-                <a href="#how-it-works" class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">How It Works</a>
-                <a href="#" id="mobile-versions-link" class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Versions</a>
-                <a href="#pricing" class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Pricing</a>
-                <a href="#faq" class="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">FAQ</a>
+                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="home">Home</a>
+                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="features">Features</a>
+                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="versions">Versions</a>
+                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="pricing">Pricing</a>
+                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="beta">Beta Program</a>
+                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="faq">FAQ</a>
+                <button id="mobile-signup-btn" class="gradient-btn px-6 py-2 rounded-lg text-white font-medium w-full mt-2">Sign Up</button>
+                <div id="mobile-user-menu" class="mt-2 hidden">
+                    <div class="flex items-center space-x-3 px-3 py-2 bg-gray-800 rounded-lg">
+                        <div class="h-10 w-10 rounded-full bg-indigo-600 flex items-center justify-center">
+                            <span id="mobile-user-initial" class="text-sm font-medium text-white">U</span>
+                        </div>
+                        <div class="flex-1">
+                            <div id="mobile-username" class="text-sm font-medium text-white">User</div>
+                            <div class="text-xs text-gray-400">Signed in</div>
+                        </div>
+                    </div>
+                    <div class="mt-2 space-y-1">
+                        <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Profile</a>
+                        <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Settings</a>
+                        <button id="mobile-logout-btn" class="block w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Sign Out</button>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-28 pb-20 hero-glow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 md:pr-12">
-                    <div class="flex items-center mb-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-900 text-indigo-200">
-                            <span class="recording-dot mr-2 h-2 w-2 rounded-full bg-red-500"></span>
-                            Screen Recording Made Simple
-                        </span>
+    <!-- Main Content Container -->
+    <div id="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page-content active">
+            <!-- Hero Section -->
+            <section class="pt-28 pb-20 hero-glow">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12">
+                            <div class="flex items-center mb-4">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-900 text-indigo-200">
+                                    <span class="recording-dot mr-2 h-2 w-2 rounded-full bg-red-500"></span>
+                                    Screen Recording Made Simple
+                                </span>
+                            </div>
+                            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Capture Your Screen with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">BabxRec</span></h1>
+                            <p class="text-xl text-gray-300 mb-8">A powerful, lightweight screen recorder for Windows. Created by BabxStudios and developed by Saketh to make screen recording effortless.</p>
+                            <div class="flex justify-center">
+                                <button id="download-installer-hero" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg flex items-center justify-center" aria-label="Download BabxRec">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                    </svg>
+                                    <div class="flex flex-col items-start ml-1">
+                                        <span>Download BabxRec</span>
+                                        <span class="text-xs opacity-75">133 MB</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 mt-12 md:mt-0">
+                            <div class="screenshot-container">
+                                <img src="https://i.imgur.com/2kgSGbf.png" alt="BabxRec Screenshot showing the main interface" class="w-full h-auto rounded-lg">
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Capture Your Screen with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">BabxRec</span></h1>
-                    <p class="text-xl text-gray-300 mb-8">A powerful, lightweight screen recorder for Windows. Created by BabxStudios and developed by Saketh to make screen recording effortless.</p>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="py-20 bg-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">How BabxRec Works</h2>
+                        <p class="text-xl text-gray-400 max-w-3xl mx-auto">Recording your screen has never been easier. Follow these simple steps to get started.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Step 1 -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-white">1</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Download & Install</h3>
+                            <p class="text-gray-400 text-center">Download the EXE file from Google Drive. The installer will be added to your system. Run it as administrator to launch the app.</p>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-white">2</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Select Recording Area</h3>
+                            <p class="text-gray-400 text-center">Choose what you want to record - a particular screen or the entire screen. Click "Select Source" to confirm your choice.</p>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-white">3</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Enable Audio</h3>
+                            <p class="text-gray-400 text-center">Turn on the audio recording option to capture system sounds and microphone input along with your screen recording.</p>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-white">4</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Start Recording</h3>
+                            <p class="text-gray-400 text-center">Click the start button to begin recording. Capture your content with high quality and smooth performance.</p>
+                        </div>
+                        
+                        <!-- Step 5 -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-white">5</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Process Recording</h3>
+                            <p class="text-gray-400 text-center">After clicking stop, open the recording and drag the timeline to the end so it processes properly in the app.</p>
+                        </div>
+                        
+                        <!-- Step 6 -->
+                        <div class="flex flex-col items-center">
+                            <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-white">6</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center">Save Your Recording</h3>
+                            <p class="text-gray-400 text-center">Click the 3 dots, select "Download", and choose the directory where you want to save your recorded file.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Latest News Section -->
+            <section class="py-20 bg-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">Latest News & Updates</h2>
+                        <p class="text-xl text-gray-400 max-w-3xl mx-auto">Stay up to date with the latest BabxRec features, improvements, and announcements.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- News Item 1 -->
+                        <article class="feature-card rounded-xl p-6 border border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="h-10 w-10 rounded-full bg-green-900 flex items-center justify-center mr-3">
+                                    <svg class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-green-400 font-medium">Version Release</span>
+                                    <p class="text-xs text-gray-500">December 15, 2024</p>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">BabxRec Beta v1.0.1 Released</h3>
+                            <p class="text-gray-400 text-sm mb-4">Major improvements to audio synchronization and UI enhancements. Better performance for long recordings and bug fixes.</p>
+                            <a href="#" class="nav-link text-indigo-400 hover:text-indigo-300 text-sm font-medium" data-page="versions">Read More →</a>
+                        </article>
+                        
+                        <!-- News Item 2 -->
+                        <article class="feature-card rounded-xl p-6 border border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="h-10 w-10 rounded-full bg-blue-900 flex items-center justify-center mr-3">
+                                    <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-blue-400 font-medium">Feature Update</span>
+                                    <p class="text-xs text-gray-500">December 10, 2024</p>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Enhanced 2K Recording Quality</h3>
+                            <p class="text-gray-400 text-sm mb-4">We've improved our 2K recording engine with better compression and enhanced video quality. Experience smoother recordings with optimized performance.</p>
+                            <a href="#" class="nav-link text-indigo-400 hover:text-indigo-300 text-sm font-medium" data-page="features">Learn More →</a>
+                        </article>
+                        
+                        <!-- News Item 3 -->
+                        <article class="feature-card rounded-xl p-6 border border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="h-10 w-10 rounded-full bg-purple-900 flex items-center justify-center mr-3">
+                                    <svg class="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-purple-400 font-medium">Community</span>
+                                    <p class="text-xs text-gray-500">December 5, 2024</p>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Growing Community</h3>
+                            <p class="text-gray-400 text-sm mb-4">Over 10,000 users have joined BabxRec! Thank you for your support and feedback. Join our Discord for tips and updates.</p>
+                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Join Discord →</a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 bg-indigo-900 bg-opacity-20">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Recording?</h2>
+                    <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Join thousands of content creators, educators, and professionals who trust BabxRec for their screen recording needs.</p>
                     <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button id="download-installer-hero" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
+                        <button id="download-installer-cta" class="gradient-btn px-8 py-4 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                             </svg>
                             <div class="flex flex-col items-start ml-1">
-                                <span>Download Installer</span>
-                                <span class="text-xs opacity-75">267 MB</span>
+                                <span>Download BabxRec</span>
+                                <span class="text-xs opacity-75">133 MB</span>
                             </div>
                         </button>
-                        <button id="download-portable-hero" class="bg-white hover:bg-gray-100 px-8 py-3 rounded-lg text-indigo-900 font-medium shadow-lg transition duration-300 flex items-center justify-center">
+                        <button id="contact-sales-link" class="border border-indigo-500 text-indigo-400 px-8 py-4 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center justify-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                             </svg>
-                            <div class="flex flex-col items-start ml-1">
-                                <span>Download Portable</span>
-                                <span class="text-xs opacity-75">140 MB</span>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                <div class="md:w-1/2 mt-12 md:mt-0">
-                    <div class="screenshot-container">
-                        <svg class="w-full h-auto" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Window frame -->
-                            <rect x="0" y="0" width="800" height="500" rx="8" fill="#1e1e2e" />
-                            
-                            <!-- Title bar -->
-                            <rect x="0" y="0" width="800" height="32" rx="8 8 0 0" fill="#252538" />
-                            
-                            <!-- Window controls -->
-                            <circle cx="20" cy="16" r="6" fill="#ff5f57" />
-                            <circle cx="40" cy="16" r="6" fill="#febc2e" />
-                            <circle cx="60" cy="16" r="6" fill="#28c840" />
-                            
-                            <!-- Title -->
-                            <text x="400" y="20" text-anchor="middle" fill="#ffffff" font-size="14">BabxRec - Screen Recorder</text>
-                            
-                            <!-- App content -->
-                            <rect x="20" y="52" width="760" height="428" rx="4" fill="#121220" />
-                            
-                            <!-- Preview area -->
-                            <rect x="40" y="72" width="500" height="280" rx="4" fill="#0a0a14" />
-                            
-                            <!-- Recording preview -->
-                            <rect x="50" y="82" width="480" height="260" rx="2" fill="#1a1a2e" />
-                            <text x="290" y="212" text-anchor="middle" fill="#6366f1" font-size="18">Preview Area</text>
-                            
-                            <!-- Controls panel -->
-                            <rect x="40" y="372" width="500" height="88" rx="4" fill="#1a1a2e" />
-                            
-                            <!-- Record button -->
-                            <circle cx="90" cy="416" r="24" fill="#ff4757" />
-                            <circle cx="90" cy="416" r="8" fill="#ffffff" />
-                            
-                            <!-- Other controls -->
-                            <rect x="140" y="404" width="80" height="24" rx="12" fill="#6366f1" />
-                            <text x="180" y="420" text-anchor="middle" fill="#ffffff" font-size="12">Audio</text>
-                            
-                            <rect x="240" y="404" width="80" height="24" rx="12" fill="#6366f1" />
-                            <text x="280" y="420" text-anchor="middle" fill="#ffffff" font-size="12">Screen</text>
-                            
-                            <rect x="340" y="404" width="80" height="24" rx="12" fill="#6366f1" />
-                            <text x="380" y="420" text-anchor="middle" fill="#ffffff" font-size="12">Settings</text>
-                            
-                            <!-- Settings panel -->
-                            <rect x="560" y="72" width="220" height="388" rx="4" fill="#1a1a2e" />
-                            
-                            <text x="670" y="102" text-anchor="middle" fill="#ffffff" font-size="16">Settings</text>
-                            
-                            <!-- Settings options -->
-                            <rect x="580" y="122" width="180" height="1" fill="#3a3a5a" />
-                            
-                            <text x="600" y="152" fill="#ffffff" font-size="14">Video Quality</text>
-                            <rect x="580" y="162" width="180" height="24" rx="12" fill="#252538" />
-                            <rect x="580" y="162" width="120" height="24" rx="12" fill="#6366f1" />
-                            <circle cx="700" cy="174" r="10" fill="#ffffff" />
-                            
-                            <text x="600" y="212" fill="#ffffff" font-size="14">Frame Rate</text>
-                            <rect x="580" y="222" width="180" height="24" rx="12" fill="#252538" />
-                            <rect x="580" y="222" width="90" height="24" rx="12" fill="#6366f1" />
-                            <circle cx="670" cy="234" r="10" fill="#ffffff" />
-                            
-                            <text x="600" y="272" fill="#ffffff" font-size="14">Audio Source</text>
-                            <rect x="580" y="282" width="180" height="30" rx="4" fill="#252538" />
-                            <text x="600" y="302" fill="#ffffff" font-size="12">System Audio + Microphone</text>
-                            
-                            <text x="600" y="332" fill="#ffffff" font-size="14">Output Format</text>
-                            <rect x="580" y="342" width="180" height="30" rx="4" fill="#252538" />
-                            <text x="600" y="362" fill="#ffffff" font-size="12">MP4 (H.264)</text>
-                            
-                            <text x="600" y="392" fill="#ffffff" font-size="14">Save Location</text>
-                            <rect x="580" y="402" width="180" height="30" rx="4" fill="#252538" />
-                            <text x="600" y="422" fill="#ffffff" font-size="12">C:/Videos/Recordings</text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Powerful Features</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">BabxRec combines simplicity with powerful features to give you the best screen recording experience.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="feature-card rounded-xl p-6">
-                    <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
-                        <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">High-Quality Recording</h3>
-                    <p class="text-gray-400">Capture your screen in crystal clear quality with support for up to 4K resolution and 60fps.</p>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="feature-card rounded-xl p-6">
-                    <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
-                        <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Audio Mixing</h3>
-                    <p class="text-gray-400">Record system audio and microphone simultaneously with adjustable levels for perfect audio balance.</p>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="feature-card rounded-xl p-6">
-                    <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
-                        <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Scheduled Recording</h3>
-                    <p class="text-gray-400">Set up recordings to start and stop automatically at specific times, perfect for capturing scheduled events.</p>
-                </div>
-                
-                <!-- Feature 4 -->
-                <div class="feature-card rounded-xl p-6">
-                    <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
-                        <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Region Selection</h3>
-                    <p class="text-gray-400">Record your entire screen, a specific window, or a custom-selected region with pixel-perfect accuracy.</p>
-                </div>
-                
-                <!-- Feature 5 -->
-                <div class="feature-card rounded-xl p-6">
-                    <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
-                        <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Quick Export</h3>
-                    <p class="text-gray-400">Export your recordings in various formats with one-click sharing to popular platforms.</p>
-                </div>
-                
-                <!-- Feature 6 -->
-                <div class="feature-card rounded-xl p-6">
-                    <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
-                        <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Advanced Settings</h3>
-                    <p class="text-gray-400">Fine-tune your recordings with customizable bitrate, codec, and compression settings.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">How BabxRec Works</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Recording your screen has never been easier. Follow these simple steps to get started.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
-                        <span class="text-2xl font-bold text-white">1</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Download & Install</h3>
-                    <p class="text-gray-400 text-center">Download the EXE file from Google Drive. The installer will be added to your system. Run it as administrator to launch the app.</p>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
-                        <span class="text-2xl font-bold text-white">2</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Select Recording Area</h3>
-                    <p class="text-gray-400 text-center">Choose what you want to record - a particular screen or the entire screen. Click "Select Source" to confirm your choice.</p>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
-                        <span class="text-2xl font-bold text-white">3</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Enable Audio</h3>
-                    <p class="text-gray-400 text-center">Turn on the audio recording option to capture system sounds and microphone input along with your screen recording.</p>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
-                        <span class="text-2xl font-bold text-white">4</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Start Recording</h3>
-                    <p class="text-gray-400 text-center">Click the start button to begin recording. Capture your content with high quality and smooth performance.</p>
-                </div>
-                
-                <!-- Step 5 -->
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
-                        <span class="text-2xl font-bold text-white">5</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Process Recording</h3>
-                    <p class="text-gray-400 text-center">After clicking stop, open the recording and drag the timeline to the end so it processes properly in the app.</p>
-                </div>
-                
-                <!-- Step 6 -->
-                <div class="flex flex-col items-center">
-                    <div class="h-16 w-16 rounded-full bg-indigo-900 flex items-center justify-center mb-4">
-                        <span class="text-2xl font-bold text-white">6</span>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Save Your Recording</h3>
-                    <p class="text-gray-400 text-center">Click the 3 dots, select "Download", and choose the directory where you want to save your recorded file.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Choose the plan that works best for your recording needs.</p>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row justify-center space-y-8 lg:space-y-0 lg:space-x-8">
-                <!-- Free Plan -->
-                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 w-full lg:w-1/3">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Free</h3>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-5xl font-extrabold">$0</span>
-                            <span class="ml-2 text-gray-400">Forever</span>
-                        </div>
-                        <p class="text-gray-400 mb-6">Perfect for casual users and those just getting started with screen recording.</p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>720p HD Recording</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>System Audio Recording</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Basic Export Options</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>5-minute Recording Limit</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- Pro Plan -->
-                <div class="bg-indigo-900 bg-opacity-30 rounded-xl overflow-hidden border border-indigo-500 w-full lg:w-1/3 transform lg:scale-105 shadow-xl">
-                    <div class="bg-indigo-600 py-2">
-                        <p class="text-center font-medium">MOST POPULAR</p>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Pro</h3>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-5xl font-extrabold">$2.99</span>
-                            <span class="ml-2 text-gray-300">/month</span>
-                        </div>
-                        <p class="text-gray-300 mb-6">For content creators and professionals who need more advanced features.</p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>4K Ultra HD Recording</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>System & Microphone Audio</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Advanced Export Options</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Unlimited Recording Time</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Basic Editing Tools</span>
-                            </li>
-                        </ul>
-                        <a href="https://discord.gg/example" target="_blank" class="w-full py-3 px-4 gradient-btn rounded-lg font-medium shadow-lg block text-center">
-                            Get Pro
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Enterprise Plan -->
-                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 w-full lg:w-1/3">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
-                        <div class="flex items-baseline mb-6">
-                            <span class="text-5xl font-extrabold">$5.99</span>
-                            <span class="ml-2 text-gray-400">/month</span>
-                        </div>
-                        <p class="text-gray-400 mb-6">For teams and businesses that need advanced features and support.</p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Everything in Pro</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Team Management</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Advanced Editing Suite</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Cloud Storage Integration</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>Priority Support</span>
-                            </li>
-                        </ul>
-                        <a href="https://discord.gg/example" target="_blank" class="w-full py-3 px-4 border border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 block text-center">
                             Contact Sales
-                        </a>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-gray-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-                <p class="text-xl text-gray-400">Find answers to common questions about BabxRec.</p>
-            </div>
-            
-            <div class="space-y-6" id="faq-container">
-                <!-- FAQ Item 1 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="1">
-                        <span class="text-lg font-medium">What are the system requirements?</span>
-                        <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-4 hidden" id="faq-answer-1">
-                        <p class="text-gray-400">BabxRec works on Windows 10 and 11 with at least 4GB RAM, 2GHz dual-core processor, and 500MB free disk space. For 4K recording, we recommend 8GB RAM and a more powerful processor.</p>
+        <!-- Features Page -->
+        <div id="features-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-900">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">Powerful Features</h2>
+                        <p class="text-xl text-gray-400 max-w-3xl mx-auto">BabxRec combines simplicity with powerful features to give you the best screen recording experience.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Feature 1 -->
+                        <div class="feature-card rounded-xl p-6">
+                            <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">High-Quality Recording</h3>
+                            <p class="text-gray-400">Capture your screen in crystal clear quality with support for up to 2K resolution and 60fps for professional recordings.</p>
+                        </div>
+                        
+                        <!-- Feature 2 -->
+                        <div class="feature-card rounded-xl p-6">
+                            <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Audio Mixing</h3>
+                            <p class="text-gray-400">Record system audio and microphone simultaneously with adjustable levels for perfect audio balance.</p>
+                        </div>
+                        
+                        <!-- Feature 3 -->
+                        <div class="feature-card rounded-xl p-6">
+                            <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Region Selection</h3>
+                            <p class="text-gray-400">Record your entire screen, a specific window, or a custom-selected region with pixel-perfect accuracy.</p>
+                        </div>
+                        
+                        <!-- Feature 4 -->
+                        <div class="feature-card rounded-xl p-6">
+                            <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Quick Export</h3>
+                            <p class="text-gray-400">Export your recordings in various formats with one-click sharing to popular platforms.</p>
+                        </div>
+                        
+                        <!-- Feature 5 -->
+                        <div class="feature-card rounded-xl p-6">
+                            <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Advanced Settings</h3>
+                            <p class="text-gray-400">Fine-tune your recordings with customizable bitrate, codec, and compression settings.</p>
+                        </div>
+                        
+                        <!-- Feature 6 -->
+                        <div class="feature-card rounded-xl p-6">
+                            <div class="h-12 w-12 rounded-lg bg-indigo-900 flex items-center justify-center mb-4">
+                                <svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Secure & Private</h3>
+                            <p class="text-gray-400">Your recordings stay on your device. No cloud uploads or data collection.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- FAQ Item 2 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="2">
-                        <span class="text-lg font-medium">Can I record specific applications only?</span>
-                        <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-4 hidden" id="faq-answer-2">
-                        <p class="text-gray-400">Yes! BabxRec allows you to record your entire screen, a specific application window, or even a custom-selected region. This gives you complete control over what appears in your recordings.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 3 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="3">
-                        <span class="text-lg font-medium">What file formats does BabxRec support?</span>
-                        <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-4 hidden" id="faq-answer-3">
-                        <p class="text-gray-400">BabxRec supports exporting to MP4, AVI, MOV, and GIF formats. Pro and Enterprise users get additional options including WebM and custom codec configurations.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 4 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="4">
-                        <span class="text-lg font-medium">Is there a watermark on the free version?</span>
-                        <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-4 hidden" id="faq-answer-4">
-                        <p class="text-gray-400">No, BabxRec's free version does not include any watermarks on your recordings. You get clean, professional recordings regardless of which plan you choose.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 5 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="5">
-                        <span class="text-lg font-medium">How do I get support if I have issues?</span>
-                        <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="px-6 pb-4 hidden" id="faq-answer-5">
-                        <p class="text-gray-400">Free users can access our knowledge base. Pro users get email support with 24-hour response time, while Enterprise users receive priority support with dedicated account managers.</p>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-indigo-900 bg-opacity-20">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Recording?</h2>
-            <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">Join thousands of content creators, educators, and professionals who trust BabxRec for their screen recording needs.</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <button id="download-installer-cta" class="gradient-btn px-8 py-4 rounded-lg text-white font-medium shadow-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                    </svg>
-                    <div class="flex flex-col items-start ml-1">
-                        <span>Download Installer</span>
-                        <span class="text-xs opacity-75">267 MB</span>
+        <!-- Versions Page -->
+        <div id="versions-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-900">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">BabxRec Version History</h2>
+                        <p class="text-xl text-gray-400">Download current and previous versions of BabxRec.</p>
                     </div>
-                </button>
-                <button id="download-portable-cta" class="bg-white hover:bg-gray-100 px-8 py-4 rounded-lg text-indigo-900 font-medium shadow-lg transition duration-300 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                    </svg>
-                    <div class="flex flex-col items-start ml-1">
-                        <span>Download Portable</span>
-                        <span class="text-xs opacity-75">140 MB</span>
+                    
+                    <div class="space-y-8">
+                        <!-- Current Version -->
+                        <div class="popup-card rounded-xl p-6">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
+                                <div class="flex items-center mb-4 md:mb-0">
+                                    <h3 class="text-2xl font-bold">Beta v1.0.1</h3>
+                                    <span class="ml-3 px-3 py-1 version-badge rounded-full text-xs font-medium">Current</span>
+                                </div>
+                                <span class="text-gray-400">December 2024</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Improved audio synchronization for long recordings.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Enhanced UI for better user experience.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Bug fixes and performance enhancements.</span>
+                                </li>
+                            </ul>
+                            <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg download-version" data-version="1.0.1">
+                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                Download
+                            </button>
+                        </div>
+                        
+                        <!-- Previous Version -->
+                        <div class="popup-card rounded-xl p-6">
+                            <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
+                                <h3 class="text-2xl font-bold">Beta v1.0.0</h3>
+                                <span class="text-gray-400">November 2024</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Initial beta release of BabxRec.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Basic screen and audio recording capabilities.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Export to MP4 format.</span>
+                                </li>
+                            </ul>
+                            <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 download-version" data-version="1.0.0">
+                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                Download
+                            </button>
+                        </div>
                     </div>
-                </button>
-                <a href="#" id="contact-sales-link" class="border border-indigo-500 text-indigo-400 px-8 py-4 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    Contact Sales
-                </a>
-            </div>
+                </div>
+            </section>
         </div>
-    </section>
+
+        <!-- Pricing Page -->
+        <div id="pricing-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-900">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
+                        <p class="text-xl text-gray-400 max-w-3xl mx-auto">Choose the plan that works best for your recording needs.</p>
+                    </div>
+                    
+                    <div class="flex flex-col lg:flex-row justify-center space-y-8 lg:space-y-0 lg:space-x-8">
+                        <!-- Free Plan -->
+                        <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 w-full lg:w-1/3">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold mb-4">Free</h3>
+                                <div class="flex items-baseline mb-6">
+                                    <span class="text-5xl font-extrabold">$0</span>
+                                    <span class="ml-2 text-gray-400">Forever</span>
+                                </div>
+                                <p class="text-gray-400 mb-6">Perfect for casual users and those just getting started with screen recording.</p>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>720p HD Recording</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>System Audio Recording</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Basic Export Options</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>5-minute Recording Limit</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Pro Plan -->
+                        <div class="bg-indigo-900 bg-opacity-30 rounded-xl overflow-hidden border border-indigo-500 w-full lg:w-1/3 transform lg:scale-105 shadow-xl">
+                            <div class="bg-indigo-600 py-2">
+                                <p class="text-center font-medium">MOST POPULAR</p>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                                <div class="flex items-baseline mb-6">
+                                    <span class="text-5xl font-extrabold">$2.99</span>
+                                    <span class="ml-2 text-gray-300">/month</span>
+                                </div>
+                                <p class="text-gray-300 mb-6">For content creators and professionals who need more advanced features.</p>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>2K Ultra HD Recording</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>System & Microphone Audio</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Advanced Export Options</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Unlimited Recording Time</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Basic Editing Tools</span>
+                                    </li>
+                                </ul>
+                                <button class="w-full py-3 px-4 gradient-btn rounded-lg font-medium shadow-lg">
+                                    Get Pro
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Enterprise Plan -->
+                        <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 w-full lg:w-1/3">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                                <div class="flex items-baseline mb-6">
+                                    <span class="text-5xl font-extrabold">$5.99</span>
+                                    <span class="ml-2 text-gray-400">/month</span>
+                                </div>
+                                <p class="text-gray-400 mb-6">For teams and businesses that need advanced features and support.</p>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Everything in Pro</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Team Management</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Advanced Editing Suite</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Cloud Storage Integration</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span>Priority Support</span>
+                                    </li>
+                                </ul>
+                                <button id="enterprise-contact-sales" class="w-full py-3 px-4 border border-indigo-500 text-indigo-400 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300">
+                                    Contact Sales
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Beta Program Page -->
+        <div id="beta-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-900">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">🚀 BabxRec Beta Program</h2>
+                        <p class="text-xl text-gray-400">Be the first to test new features and help shape the future of BabxRec.</p>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="popup-card rounded-xl p-8">
+                            <h3 class="text-2xl font-bold mb-6">What is the Beta Program?</h3>
+                            <p class="text-gray-300 mb-6">The BabxRec Beta Program gives you early access to upcoming features, improvements, and bug fixes before they're released to the general public. As a beta tester, you'll play a crucial role in helping us create the best screen recording experience possible.</p>
+                            
+                            <h4 class="text-xl font-semibold mb-4">🎯 What You Get:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>Early Access:</strong> Get new features weeks before public release</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>Direct Feedback Channel:</strong> Your input directly influences development</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>Exclusive Discord Channel:</strong> Connect with other beta testers and developers</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>Beta Tester Badge:</strong> Special recognition in our community</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>Priority Support:</strong> Faster response times for beta-related issues</span>
+                                </li>
+                            </ul>
+
+                            <h4 class="text-xl font-semibold mb-4">📋 What We Expect:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-indigo-400 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Regular testing of new features and updates</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-indigo-400 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Detailed bug reports and feedback</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-indigo-400 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Active participation in beta discussions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-indigo-400 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Understanding that beta software may have bugs</span>
+                                </li>
+                            </ul>
+
+                            <div class="bg-yellow-900 bg-opacity-20 border border-yellow-800 rounded-lg p-6 mb-8">
+                                <div class="flex items-start">
+                                    <svg class="h-6 w-6 text-yellow-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                                    </svg>
+                                    <div>
+                                        <h4 class="font-semibold text-yellow-400 mb-2">Important Note</h4>
+                                        <p class="text-gray-300">Beta versions may contain bugs and are not recommended for critical production work. Always keep a stable version as backup.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <h4 class="text-xl font-semibold mb-4">Ready to Join?</h4>
+                                <p class="text-gray-300 mb-6">Join our Discord server and request beta access in the #beta-requests channel.</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="https://discord.gg/EXAMPLE" target="_blank" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg inline-flex items-center justify-center">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                                        </svg>
+                                        Join Discord & Request Beta Access
+                                    </a>
+                                    <button class="nav-link border border-indigo-500 text-indigo-400 px-8 py-3 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 inline-flex items-center justify-center" data-page="beta">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        Learn More About Beta
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FAQ Page -->
+        <div id="faq-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-800">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                        <p class="text-xl text-gray-400">Find answers to common questions about BabxRec.</p>
+                    </div>
+                    
+                    <div class="space-y-6" id="faq-container">
+                        <!-- FAQ Item 1 -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="1" aria-expanded="false" aria-controls="faq-answer-1">
+                                <span class="text-lg font-medium">What are the system requirements?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-1">
+                                <p class="text-gray-400">BabxRec works on Windows 10 and 11 with at least 4GB RAM, 2GHz dual-core processor, and 500MB free disk space. For 2K recording, we recommend 8GB RAM and a more powerful processor.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 2 -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="2" aria-expanded="false" aria-controls="faq-answer-2">
+                                <span class="text-lg font-medium">Can I record specific applications only?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-2">
+                                <p class="text-gray-400">Yes! BabxRec allows you to record your entire screen, a specific application window, or even a custom-selected region. This gives you complete control over what appears in your recordings.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 3 -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="3" aria-expanded="false" aria-controls="faq-answer-3">
+                                <span class="text-lg font-medium">What file formats does BabxRec support?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-3">
+                                <p class="text-gray-400">BabxRec supports exporting to MP4, AVI, MOV, and GIF formats. Pro and Enterprise users get additional options including WebM and custom codec configurations.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 4 -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="4" aria-expanded="false" aria-controls="faq-answer-4">
+                                <span class="text-lg font-medium">Is there a watermark on the free version?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-4">
+                                <p class="text-gray-400">No, BabxRec's free version does not include any watermarks on your recordings. You get clean, professional recordings regardless of which plan you choose.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 5 -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="5" aria-expanded="false" aria-controls="faq-answer-5">
+                                <span class="text-lg font-medium">How do I get support if I have issues?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-5">
+                                <p class="text-gray-400">Free users can access our knowledge base. Pro users get email support with 24-hour response time, while Enterprise users receive priority support with dedicated account managers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 py-12">
@@ -655,31 +908,31 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center mb-4">
-                        <img src="https://i.imgur.com/BUc9s66.png" alt="BabxRec Logo" class="footer-logo">
+                        <img src="https://i.imgur.com/sVZrWUQ.png" alt="BabxRec Logo" class="footer-logo">
                         <span class="ml-2 text-xl font-bold">BabxRec</span>
                     </div>
                     <p class="text-gray-400 mb-4">A powerful screen recorder for Windows, developed by Saketh at BabxStudios.</p>
                     <div class="flex space-x-4">
                         <!-- YouTube -->
-                        <a href="https://www.youtube.com/channel/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://www.youtube.com/channel/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="YouTube">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                             </svg>
                         </a>
                         <!-- Instagram -->
-                        <a href="https://www.instagram.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://www.instagram.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="Instagram">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
                             </svg>
                         </a>
                         <!-- Discord -->
-                        <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="Discord">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                             </svg>
                         </a>
                         <!-- GitHub -->
-                        <a href="https://github.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white">
+                        <a href="https://github.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="GitHub">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                             </svg>
@@ -690,28 +943,26 @@
                 <div class="col-span-1">
                     <h3 class="text-lg font-semibold mb-4">Product</h3>
                     <ul class="space-y-2">
-                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
-                        <li><a href="#" id="footer-versions-link" class="text-gray-400 hover:text-white">Versions</a></li>
-                        <li><a href="#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Download</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Beta Program</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="features">Features</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="versions">Versions</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="pricing">Pricing</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="beta">Beta Program</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-span-1">
                     <h3 class="text-lg font-semibold mb-4">Support</h3>
                     <ul class="space-y-2">
-                        <li><a href="#faq" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="faq">FAQ</a></li>
                         <li><a href="#" id="contact-support-link" class="text-gray-400 hover:text-white">Contact Support</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-span-1">
-                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" id="about-babxstudios-link" class="text-gray-400 hover:text-white">About BabxStudios</a></li>
-                        <li><a href="#" id="contact-us-link" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                        <li><a href="#" id="our-products-link" class="text-gray-400 hover:text-white">Our Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -720,429 +971,132 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-400 text-sm">© 2025 BabxRec. All rights reserved.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" id="privacy-policy-link" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                        <a href="#" id="terms-of-service-link" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <span class="text-gray-400 text-sm">Made with ❤️ by BabxStudios</span>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Version History Popup -->
-    <div class="popup" id="version-popup">
+    <!-- Sign Up Popup -->
+    <div class="popup" id="signup-popup">
         <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
+            <div class="max-w-md mx-auto w-full">
                 <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
                     <div class="p-6 md:p-8">
                         <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">BabxRec Version History</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
+                            <h2 id="auth-title" class="text-2xl font-bold">Sign Up for BabxRec</h2>
+                            <button class="close-popup text-gray-400 hover:text-white" aria-label="Close popup">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
                         
-                        <div class="space-y-8">
-                            <!-- Current Version -->
-                            <div class="popup-card rounded-xl p-6">
-                                <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
-                                    <div class="flex items-center mb-4 md:mb-0">
-                                        <h3 class="text-2xl font-bold">v1.6.0</h3>
-                                        <span class="ml-3 px-3 py-1 version-badge rounded-full text-xs font-medium">Current</span>
-                                    </div>
-                                    <span class="text-gray-400">July 2025</span>
-                                </div>
-                                <ul class="space-y-2 mb-6">
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Added new high-quality 4K recording option.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Improved audio synchronization for long recordings.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Bug fixes and performance enhancements.</span>
-                                    </li>
-                                </ul>
-                                <div class="flex flex-col sm:flex-row gap-3">
-                                    <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg flex items-center download-version" data-version="1.6.0" data-type="installer">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                        </svg>
-                                        <div class="flex flex-col items-start ml-1">
-                                            <span>Installer</span>
-                                            <span class="text-xs opacity-75">267 MB</span>
-                                        </div>
-                                    </button>
-                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.6.0" data-type="portable">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                        </svg>
-                                        <div class="flex flex-col items-start ml-1">
-                                            <span>Portable</span>
-                                            <span class="text-xs opacity-75">140 MB</span>
-                                        </div>
-                                    </button>
+                        <!-- Auth Toggle -->
+                        <div class="flex mb-8 bg-gray-900 rounded-xl p-1 border border-gray-600">
+                            <button id="signup-tab" class="flex-1 py-3 px-6 text-sm font-semibold rounded-lg transition-all duration-300 bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">Sign Up</button>
+                            <button id="signin-tab" class="flex-1 py-3 px-6 text-sm font-semibold rounded-lg transition-all duration-300 text-gray-300 hover:text-white hover:bg-gray-800">Sign In</button>
+                        </div>
+                        
+                        <!-- Sign Up Form -->
+                        <form id="signup-form" class="space-y-6">
+                            <div class="relative">
+                                <label for="signup-name" class="block text-sm font-semibold text-gray-200 mb-3">Full Name</label>
+                                <div class="relative">
+                                    <input type="text" id="signup-name" name="name" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300" placeholder="Enter your full name">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                                 </div>
                             </div>
                             
-                            <!-- Version 1.1.0 -->
-                            <div class="popup-card rounded-xl p-6">
-                                <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
-                                    <h3 class="text-2xl font-bold">v1.1.0</h3>
-                                    <span class="text-gray-400">May 2025</span>
-                                </div>
-                                <ul class="space-y-2 mb-6">
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Introduced scheduled recording feature.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Added support for exporting in MOV and GIF formats.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Enhanced UI for easier navigation.</span>
-                                    </li>
-                                </ul>
-                                <div class="flex flex-col sm:flex-row gap-3">
-                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.1.0" data-type="installer">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                        </svg>
-                                        <div class="flex flex-col items-start ml-1">
-                                            <span>Installer</span>
-                                            <span class="text-xs opacity-75">267 MB</span>
-                                        </div>
-                                    </button>
-                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.1.0" data-type="portable">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                        </svg>
-                                        <div class="flex flex-col items-start ml-1">
-                                            <span>Portable</span>
-                                            <span class="text-xs opacity-75">140 MB</span>
-                                        </div>
-                                    </button>
+                            <div class="relative">
+                                <label for="signup-email" class="block text-sm font-semibold text-gray-200 mb-3">Email Address</label>
+                                <div class="relative">
+                                    <input type="email" id="signup-email" name="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300" placeholder="Enter your email">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                                 </div>
                             </div>
                             
-                            <!-- Version 1.0.0 -->
-                            <div class="popup-card rounded-xl p-6">
-                                <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
-                                    <h3 class="text-2xl font-bold">v1.0.0</h3>
-                                    <span class="text-gray-400">March 2025</span>
-                                </div>
-                                <ul class="space-y-2 mb-6">
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Initial release of BabxRec.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Basic screen and audio recording capabilities.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Export to MP4 format.</span>
-                                    </li>
-                                </ul>
-                                <div class="flex flex-col sm:flex-row gap-3">
-                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.0.0" data-type="installer">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                        </svg>
-                                        <div class="flex flex-col items-start ml-1">
-                                            <span>Installer</span>
-                                            <span class="text-xs opacity-75">267 MB</span>
-                                        </div>
-                                    </button>
-                                    <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="1.0.0" data-type="portable">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                        </svg>
-                                        <div class="flex flex-col items-start ml-1">
-                                            <span>Portable</span>
-                                            <span class="text-xs opacity-75">140 MB</span>
-                                        </div>
-                                    </button>
+                            <div class="relative">
+                                <label for="signup-password" class="block text-sm font-semibold text-gray-200 mb-3">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="signup-password" name="password" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300" placeholder="Create a password">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About BabxStudios Popup -->
-    <div class="popup" id="about-babxstudios-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">About BabxStudios</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="popup-card rounded-xl p-6">
-                                <h3 class="text-2xl font-bold mb-4">📜 BabxStudios – About Us</h3>
-                                <p class="text-gray-300 mb-6">BabxStudios is a creative software development studio focused on building simple, powerful, and user-friendly tools for creators, educators, and professionals. Our mission is to design applications that make complex tasks effortless while maintaining high performance and modern design.</p>
-                                
-                                <p class="text-gray-300 mb-6">We specialize in productivity tools, recording software, and innovative digital solutions that empower users worldwide. With BabxRec, our flagship screen recorder, we aim to deliver a smooth and high-quality recording experience for everyone—whether you're a content creator, gamer, teacher, or professional.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-4">At BabxStudios, we believe in:</h4>
-                                <ul class="space-y-3 mb-6">
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            
+                            <div class="relative">
+                                <label for="signup-interest" class="block text-sm font-semibold text-gray-200 mb-3">I'm interested in:</label>
+                                <div class="relative">
+                                    <select id="signup-interest" name="interest" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 appearance-none cursor-pointer">
+                                        <option value="free">Free Version</option>
+                                        <option value="pro">Pro Version ($2.99/month)</option>
+                                        <option value="enterprise">Enterprise Version ($5.99/month)</option>
+                                        <option value="beta">Beta Testing Program</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                         </svg>
-                                        <span>Innovation – Creating tools that are modern and efficient.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Simplicity – Designing with ease-of-use in mind.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>Quality – Delivering reliable, high-performance software.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Support Popup -->
-    <div class="popup" id="contact-support-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">Contact Support</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="popup-card rounded-xl p-6">
-                                <h3 class="text-2xl font-bold mb-4">Need Help with BabxRec?</h3>
-                                <p class="text-gray-300 mb-6">Our support team is ready to assist you with any questions or issues you might have with BabxRec. Here's how you can reach us:</p>
-                                
-                                <div class="space-y-4 mb-6">
-                                    <div class="flex items-start">
-                                        <svg class="h-6 w-6 text-indigo-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </svg>
-                                        <div>
-                                            <h4 class="font-semibold">Email Support</h4>
-                                            <a href="mailto:babxstudios@gmail.com" class="text-indigo-400 hover:text-indigo-300">babxstudios@gmail.com</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="h-6 w-6 text-indigo-400 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                                        </svg>
-                                        <div>
-                                            <h4 class="font-semibold">Discord Community</h4>
-                                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join our Discord Server</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <p class="text-gray-300">Our support team typically responds within 24-48 hours. Pro and Enterprise users receive priority support with faster response times.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Us Popup -->
-    <div class="popup" id="contact-us-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">Contact Us</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="popup-card rounded-xl p-6">
-                                <h3 class="text-2xl font-bold mb-4">Get in Touch with BabxStudios</h3>
-                                <p class="text-gray-300 mb-6">Have questions, feedback, or business inquiries? We'd love to hear from you! Here's how you can reach the BabxStudios team:</p>
-                                
-                                <div class="space-y-4 mb-6">
-                                    <div class="flex items-start">
-                                        <svg class="h-6 w-6 text-indigo-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </svg>
-                                        <div>
-                                            <h4 class="font-semibold">Email</h4>
-                                            <a href="mailto:babxstudios@gmail.com" class="text-indigo-400 hover:text-indigo-300">babxstudios@gmail.com</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="h-6 w-6 text-indigo-400 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                                        </svg>
-                                        <div>
-                                            <h4 class="font-semibold">Discord</h4>
-                                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join our Discord Server</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <p class="text-gray-300">We value your feedback and are always looking to improve our products. Don't hesitate to reach out with suggestions, questions, or partnership opportunities.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Our Products Popup -->
-    <div class="popup" id="our-products-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">Our Products</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <div class="space-y-8">
-                            <!-- BabxRec Product -->
-                            <div class="product-card rounded-xl p-6">
-                                <div class="flex flex-col md:flex-row">
-                                    <div class="md:w-1/4 flex justify-center mb-4 md:mb-0">
-                                        <img src="https://i.imgur.com/nJOwJ6n.png" alt="BabxRec Logo" class="h-24 w-auto">
-                                    </div>
-                                    <div class="md:w-3/4 md:pl-6">
-                                        <h3 class="text-2xl font-bold mb-2">BabxRec</h3>
-                                        <p class="text-gray-300 mb-4">A powerful, lightweight screen recorder for Windows. Create high-quality screen recordings with ease, perfect for content creators, educators, and professionals.</p>
-                                        <div class="flex flex-wrap gap-2 mb-4">
-                                            <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">Screen Recording</span>
-                                            <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">Windows</span>
-                                            <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">4K Support</span>
-                                        </div>
-                                        <div class="flex flex-col sm:flex-row gap-3">
-                                            <button class="gradient-btn px-6 py-2 rounded-lg text-white font-medium shadow-lg flex items-center download-version" data-version="latest" data-type="installer">
-                                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                                </svg>
-                                                <div class="flex flex-col items-start ml-1">
-                                                    <span>Installer</span>
-                                                    <span class="text-xs opacity-75">267 MB</span>
-                                                </div>
-                                            </button>
-                                            <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center download-version" data-version="latest" data-type="portable">
-                                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                                </svg>
-                                                <div class="flex flex-col items-start ml-1">
-                                                    <span>Portable</span>
-                                                    <span class="text-xs opacity-75">140 MB</span>
-                                                </div>
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Bab Network Product -->
-                            <div class="product-card rounded-xl p-6">
-                                <div class="flex flex-col md:flex-row">
-                                    <div class="md:w-1/4 flex justify-center mb-4 md:mb-0">
-                                        <div class="h-24 w-24 bg-indigo-900 rounded-lg flex items-center justify-center">
-                                            <svg class="h-16 w-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M4 2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2zm2 4v12h12V6H6zm2 2h8v8H8V8zm2 2v4h4v-4h-4z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="md:w-3/4 md:pl-6">
-                                        <h3 class="text-2xl font-bold mb-2">Bab Network</h3>
-                                        <p class="text-gray-300 mb-4">Join our exciting Minecraft server featuring Lifesteal PvP and Bedwars game modes. Experience unique gameplay, custom plugins, and a friendly community.</p>
-                                        <div class="flex flex-wrap gap-2 mb-4">
-                                            <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">Minecraft</span>
-                                            <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">Lifesteal PvP</span>
-                                            <span class="px-2 py-1 bg-indigo-900 bg-opacity-50 rounded-full text-xs font-medium">Bedwars</span>
-                                        </div>
-                                        <div class="flex flex-col sm:flex-row gap-4">
-                                            <div class="bg-gray-700 bg-opacity-50 rounded-lg p-3 flex items-center">
-                                                <span class="font-mono text-sm mr-2">IP:</span>
-                                                <span class="text-indigo-300">mc.babnetwork.xyz</span>
-                                            </div>
-                                            <div class="bg-gray-700 bg-opacity-50 rounded-lg p-3 flex items-center">
-                                                <span class="font-mono text-sm mr-2">Port:</span>
-                                                <span class="text-indigo-300">25567</span>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 flex items-center inline-flex">
-                                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                                                </svg>
-                                                Join Discord
-                                            </a>
-                                        </div>
-                                    </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" id="signup-newsletter" name="newsletter" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-600 rounded bg-gray-700">
+                                <label for="signup-newsletter" class="ml-2 text-sm text-gray-300">
+                                    I want to receive updates about new features and releases
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 px-6 py-4 rounded-xl text-white font-semibold shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                                </svg>
+                                <span>Create Account</span>
+                            </button>
+                        </form>
+                        
+                        <!-- Sign In Form -->
+                        <form id="signin-form" class="space-y-6 hidden">
+                            <div class="relative">
+                                <label for="signin-email" class="block text-sm font-semibold text-gray-200 mb-3">Email Address</label>
+                                <div class="relative">
+                                    <input type="email" id="signin-email" name="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300" placeholder="Enter your email">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                                 </div>
                             </div>
+                            
+                            <div class="relative">
+                                <label for="signin-password" class="block text-sm font-semibold text-gray-200 mb-3">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="signin-password" name="password" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300" placeholder="Enter your password">
+                                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="signin-remember" name="remember" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-600 rounded bg-gray-800">
+                                    <label for="signin-remember" class="ml-2 text-sm text-gray-300">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="#" class="text-sm text-indigo-400 hover:text-indigo-300 font-medium">
+                                    Forgot password?
+                                </a>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 px-6 py-4 rounded-xl text-white font-semibold shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                                </svg>
+                                <span>Sign In</span>
+                            </button>
+                        </form>
+                        
+                        <div class="mt-6 text-sm text-gray-400 text-center">
+                            <p>By signing up, you agree to our <a href="#" class="text-indigo-400 hover:text-indigo-300">Terms of Service</a> and <a href="#" class="text-indigo-400 hover:text-indigo-300">Privacy Policy</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -1150,126 +1104,65 @@
         </div>
     </div>
 
-    <!-- Privacy Policy Popup -->
-    <div class="popup" id="privacy-policy-popup">
+    <!-- Contact Sales Popup -->
+    <div class="popup" id="contact-sales-popup">
         <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
+            <div class="max-w-md mx-auto w-full">
                 <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
                     <div class="p-6 md:p-8">
                         <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">Privacy Policy</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
+                            <h2 class="text-2xl font-bold">Contact Sales</h2>
+                            <button class="close-popup text-gray-400 hover:text-white" aria-label="Close popup">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
                         
-                        <div class="space-y-6">
-                            <div class="popup-card rounded-xl p-6">
-                                <h3 class="text-2xl font-bold mb-4">🔒 Privacy Policy for BabxRec</h3>
-                                <p class="text-gray-400 mb-4">Effective Date: July 28, 2025</p>
-                                <p class="text-gray-400 mb-6">Last Updated: July 28, 2025</p>
-                                
-                                <p class="text-gray-300 mb-6">BabxRec is developed by BabxStudios. Your privacy is important to us. This Privacy Policy explains how we handle your information when you use BabxRec and our related services.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">1. Information We Do Not Collect</h4>
-                                <p class="text-gray-300 mb-4">BabxRec is an offline screen recording software. We do not collect any of the following:</p>
-                                <ul class="list-disc pl-6 mb-6 space-y-2 text-gray-300">
-                                    <li>Personal information (name, email, address)</li>
-                                    <li>Screen content or audio</li>
-                                    <li>System information or usage statistics</li>
-                                    <li>Location data or IP addresses</li>
-                                </ul>
-                                <p class="text-gray-300 mb-6">Your recordings are saved locally on your device and are not uploaded or shared by the app.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">2. No Internet Tracking</h4>
-                                <p class="text-gray-300 mb-6">BabxRec does not require an internet connection for its core functions. It does not use analytics tools, cookies, or third-party trackers.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">3. Optional Updates</h4>
-                                <p class="text-gray-300 mb-6">When checking for updates (optional), BabxRec may connect to our secure server to verify the latest version. No personal data is transmitted during this process.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">4. Third-Party Services</h4>
-                                <p class="text-gray-300 mb-6">If you choose to use features like cloud storage integrations (Pro or Enterprise plans), those features may follow their own privacy policies. We encourage you to read the policies of those third-party services separately.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">5. Your Control</h4>
-                                <p class="text-gray-300 mb-6">You remain in full control of your recordings. BabxRec does not transmit, back up, or access any user files. You may delete or manage recordings on your device at any time.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">6. Contact Us</h4>
-                                <p class="text-gray-300 mb-4">If you have any questions about this Privacy Policy, you may contact us at:</p>
-                                <p class="text-gray-300 mb-1">📧 Email: <a href="mailto:babxstudios@gmail.com" class="text-indigo-400 hover:text-indigo-300">babxstudios@gmail.com</a></p>
-                                <p class="text-gray-300 mb-6">🌐 Website: <a href="https://babxstudios.xyz" target="_blank" class="text-indigo-400 hover:text-indigo-300">https://babxstudios.xyz</a></p>
-                                
-                                <div class="bg-indigo-900 bg-opacity-20 p-4 rounded-lg border border-indigo-800">
-                                    <p class="text-white font-medium">✅ Summary: We don't collect your data. We don't track you. We respect your privacy.</p>
-                                </div>
+                        <form id="contact-sales-form" class="space-y-6">
+                            <div>
+                                <label for="sales-company" class="block text-sm font-medium text-gray-300 mb-2">Company Name</label>
+                                <input type="text" id="sales-company" name="company" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Enter your company name">
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Terms of Service Popup -->
-    <div class="popup" id="terms-of-service-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-                    <div class="p-6 md:p-8">
-                        <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-bold">Terms of Service</h2>
-                            <button class="close-popup text-gray-400 hover:text-white">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
+                            
+                            <div>
+                                <label for="sales-name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                                <input type="text" id="sales-name" name="name" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div>
+                                <label for="sales-email" class="block text-sm font-medium text-gray-300 mb-2">Business Email</label>
+                                <input type="email" id="sales-email" name="email" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Enter your business email">
+                            </div>
+                            
+                            <div>
+                                <label for="sales-phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                                <input type="tel" id="sales-phone" name="phone" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div>
+                                <label for="sales-team-size" class="block text-sm font-medium text-gray-300 mb-2">Team Size</label>
+                                <select id="sales-team-size" name="team-size" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    <option value="1-10">1-10 people</option>
+                                    <option value="11-50">11-50 people</option>
+                                    <option value="51-200">51-200 people</option>
+                                    <option value="201-1000">201-1000 people</option>
+                                    <option value="1000+">1000+ people</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="sales-message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <textarea id="sales-message" name="message" rows="4" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Tell us about your needs and how we can help..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full gradient-btn px-6 py-3 rounded-lg text-white font-medium shadow-lg">
+                                Send Message
                             </button>
-                        </div>
+                        </form>
                         
-                        <div class="space-y-6">
-                            <div class="popup-card rounded-xl p-6">
-                                <h3 class="text-2xl font-bold mb-4">📄 Terms of Service – BabxRec</h3>
-                                <p class="text-gray-400 mb-4">Effective Date: July 28, 2025</p>
-                                <p class="text-gray-400 mb-6">Last Updated: July 28, 2025</p>
-                                
-                                <p class="text-gray-300 mb-6">Welcome to BabxRec, developed by BabxStudios. By downloading, installing, or using BabxRec, you agree to these Terms of Service. Please read them carefully.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">1. License</h4>
-                                <p class="text-gray-300 mb-6">BabxRec is licensed, not sold, to you.</p>
-                                <p class="text-gray-300 mb-6">You are granted a personal, non-exclusive, non-transferable license to use BabxRec on your devices.</p>
-                                <p class="text-gray-300 mb-6">You may not reverse engineer, modify, or distribute BabxRec without written permission from BabxStudios.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">2. Prohibited Use</h4>
-                                <p class="text-gray-300 mb-4">You agree not to:</p>
-                                <ul class="list-disc pl-6 mb-6 space-y-2 text-gray-300">
-                                    <li>Use BabxRec for illegal activities or copyright infringement.</li>
-                                    <li>Distribute the software without authorization.</li>
-                                    <li>Modify or attempt to bypass any licensing mechanisms.</li>
-                                </ul>
-                                
-                                <h4 class="text-xl font-semibold mb-3">3. Ownership</h4>
-                                <p class="text-gray-300 mb-6">BabxRec, including its code, design, and branding, is the intellectual property of BabxStudios. All rights are reserved.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">4. Updates & Changes</h4>
-                                <p class="text-gray-300 mb-6">BabxStudios may release updates to improve features or fix bugs. We reserve the right to modify or discontinue features without prior notice.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">5. Limitation of Liability</h4>
-                                <p class="text-gray-300 mb-6">BabxStudios is not responsible for any data loss, damages, or issues caused by the use of BabxRec.</p>
-                                <p class="text-gray-300 mb-6">You are solely responsible for how you use the software.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">6. Privacy</h4>
-                                <p class="text-gray-300 mb-6">Our Privacy Policy explains how we handle your data. By using BabxRec, you agree to the terms of our Privacy Policy.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">7. Termination</h4>
-                                <p class="text-gray-300 mb-6">BabxStudios may suspend or revoke your license if you violate these terms.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">8. Governing Law</h4>
-                                <p class="text-gray-300 mb-6">These Terms are governed by the laws of India. Any disputes will be resolved under applicable Indian law.</p>
-                                
-                                <h4 class="text-xl font-semibold mb-3">9. Contact Us</h4>
-                                <p class="text-gray-300 mb-1">📧 Email: <a href="mailto:support@babxstudios.com" class="text-indigo-400 hover:text-indigo-300">support@babxstudios.com</a></p>
-                                <p class="text-gray-300 mb-6">🌐 Website: <a href="https://babxrec.xyz" target="_blank" class="text-indigo-400 hover:text-indigo-300">https://babxrec.xyz</a></p>
-                            </div>
+                        <div class="mt-6 text-sm text-gray-400 text-center">
+                            <p>We'll get back to you within 24 hours.</p>
                         </div>
                     </div>
                 </div>
@@ -1278,139 +1171,312 @@
     </div>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // FAQ accordion
-        const faqToggles = document.querySelectorAll('[data-faq-toggle]');
-        
-        faqToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const faqId = toggle.getAttribute('data-faq-toggle');
-                const answer = document.getElementById(`faq-answer-${faqId}`);
-                const arrow = document.getElementById(`arrow-${faqId}`);
-                
-                answer.classList.toggle('hidden');
-                arrow.classList.toggle('rotate-180');
+        // Page navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
             });
-        });
-        
-        // Popup functionality
-        function setupPopup(triggerIds, popupId) {
-            const popup = document.getElementById(popupId);
             
-            // Convert to array if it's a single ID
-            const triggers = Array.isArray(triggerIds) ? triggerIds : [triggerIds];
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
             
-            triggers.forEach(triggerId => {
-                const trigger = document.getElementById(triggerId);
-                if (trigger) {
-                    trigger.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        popup.style.display = 'block';
-                        document.body.style.overflow = 'hidden';
-                        
-                        // Close mobile menu if open
-                        if (!mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    });
+            // Update navigation active states
+            updateNavActiveStates(pageId);
+            
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function updateNavActiveStates(activePageId) {
+            // Update desktop nav
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const pageId = link.getAttribute('data-page');
+                if (pageId === activePageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // Update mobile nav
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                const pageId = link.getAttribute('data-page');
+                if (pageId === activePageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
         }
-        
-        // Setup all popups
-        setupPopup(['versions-link', 'mobile-versions-link', 'footer-versions-link'], 'version-popup');
-        setupPopup('about-babxstudios-link', 'about-babxstudios-popup');
-        setupPopup('contact-support-link', 'contact-support-popup');
-        setupPopup(['contact-us-link', 'contact-sales-link'], 'contact-us-popup');
-        setupPopup('our-products-link', 'our-products-popup');
-        setupPopup('privacy-policy-link', 'privacy-policy-popup');
-        setupPopup('terms-of-service-link', 'terms-of-service-popup');
-        
-        // Close popup functionality
-        const closeButtons = document.querySelectorAll('.close-popup');
-        const popups = document.querySelectorAll('.popup');
-        
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const popup = button.closest('.popup');
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // User dropdown toggle
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('nav-user-dropdown');
+            if (dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(faqId) {
+            const answer = document.getElementById('faq-answer-' + faqId);
+            const arrow = document.getElementById('arrow-' + faqId);
+            const button = document.querySelector('[data-faq-toggle="' + faqId + '"]');
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+                button.setAttribute('aria-expanded', 'true');
+            } else {
+                answer.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        // Popup functionality
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hidePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
                 popup.style.display = 'none';
                 document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Auth form toggle
+        function toggleAuthForm(formType) {
+            const signupForm = document.getElementById('signup-form');
+            const signinForm = document.getElementById('signin-form');
+            const signupTab = document.getElementById('signup-tab');
+            const signinTab = document.getElementById('signin-tab');
+            const authTitle = document.getElementById('auth-title');
+            
+            if (formType === 'signup') {
+                signupForm.classList.remove('hidden');
+                signinForm.classList.add('hidden');
+                signupTab.classList.add('bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'text-white', 'shadow-lg');
+                signupTab.classList.remove('text-gray-300', 'hover:bg-gray-800');
+                signinTab.classList.remove('bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'text-white', 'shadow-lg');
+                signinTab.classList.add('text-gray-300', 'hover:bg-gray-800');
+                authTitle.textContent = 'Sign Up for BabxRec';
+            } else {
+                signinForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                signinTab.classList.add('bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'text-white', 'shadow-lg');
+                signinTab.classList.remove('text-gray-300', 'hover:bg-gray-800');
+                signupTab.classList.remove('bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'text-white', 'shadow-lg');
+                signupTab.classList.add('text-gray-300', 'hover:bg-gray-800');
+                authTitle.textContent = 'Sign In to BabxRec';
+            }
+        }
+
+        // Simulate user authentication
+        function simulateAuth(userData) {
+            // Show user menu, hide signup button
+            document.getElementById('nav-signup-btn').classList.add('hidden');
+            document.getElementById('nav-user-menu').classList.remove('hidden');
+            document.getElementById('mobile-signup-btn').classList.add('hidden');
+            document.getElementById('mobile-user-menu').classList.remove('hidden');
+            
+            // Update user info
+            const initial = userData.name.charAt(0).toUpperCase();
+            document.getElementById('nav-user-initial').textContent = initial;
+            document.getElementById('nav-username').textContent = userData.name;
+            document.getElementById('mobile-user-initial').textContent = initial;
+            document.getElementById('mobile-username').textContent = userData.name;
+            
+            // Store user data
+            localStorage.setItem('babxrec_user', JSON.stringify(userData));
+        }
+
+        function logout() {
+            // Hide user menu, show signup button
+            document.getElementById('nav-user-menu').classList.add('hidden');
+            document.getElementById('nav-signup-btn').classList.remove('hidden');
+            document.getElementById('mobile-user-menu').classList.add('hidden');
+            document.getElementById('mobile-signup-btn').classList.remove('hidden');
+            
+            // Clear user data
+            localStorage.removeItem('babxrec_user');
+            
+            // Hide dropdown
+            document.getElementById('nav-user-dropdown').classList.add('hidden');
+        }
+
+        // Check for existing user session
+        function checkUserSession() {
+            const userData = localStorage.getItem('babxrec_user');
+            if (userData) {
+                simulateAuth(JSON.parse(userData));
+            }
+        }
+
+        // Download functionality
+        function simulateDownload(version = null) {
+            const downloadUrl = 'https://release-assets.githubusercontent.com/github-production-release-asset/1031643127/9dd849ae-7aab-4237-89e4-ee5a3bd8fb56?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-04T15%3A10%3A42Z&rscd=attachment%3B+filename%3Dbabxrec.beta.v1.0.1.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-08-04T14%3A09%3A58Z&ske=2025-08-04T15%3A10%3A42Z&sks=b&skv=2018-11-09&sig=SM7%2ByhuyUckKHdfNKeaBvk5WyweY1PM%2FnC93QBrNtWc%3D&jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc1NDMxNzI0NSwibmJmIjoxNzU0MzE2OTQ1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.DK5O1axsYIdWUGkkW0qT6ZeA-VEcxmBANXRrzRUZe9c&response-content-disposition=attachment%3B%20filename%3Dbabxrec.beta.v1.0.1.exe&response-content-type=application%2Foctet-stream';
+            
+            // Create temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'babxrec.beta.v1.0.1.exe';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Download started silently
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check user session on load
+            checkUserSession();
+            
+            // Set home as active page initially
+            updateNavActiveStates('home');
+            
+            // Navigation links
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    if (pageId) {
+                        showPage(pageId);
+                    }
+                });
             });
-        });
-        
-        // Close popup when clicking outside the content
-        popups.forEach(popup => {
-            popup.addEventListener('click', (e) => {
-                if (e.target === popup) {
-                    popup.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
+            
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+            
+            // User dropdown toggle
+            document.getElementById('nav-user-btn').addEventListener('click', toggleUserDropdown);
+            
+            // Logout buttons
+            document.getElementById('nav-logout-btn').addEventListener('click', logout);
+            document.getElementById('mobile-logout-btn').addEventListener('click', logout);
+            
+            // FAQ toggles
+            document.querySelectorAll('[data-faq-toggle]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const faqId = this.getAttribute('data-faq-toggle');
+                    toggleFAQ(faqId);
+                });
             });
-        });
-        
-        // Close popup with escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                popups.forEach(popup => {
-                    if (popup.style.display === 'block') {
+            
+            // Signup buttons
+            document.getElementById('nav-signup-btn').addEventListener('click', () => showPopup('signup-popup'));
+            document.getElementById('mobile-signup-btn').addEventListener('click', () => showPopup('signup-popup'));
+            
+            // Contact sales buttons
+            document.getElementById('contact-sales-link').addEventListener('click', () => showPopup('contact-sales-popup'));
+            document.getElementById('enterprise-contact-sales').addEventListener('click', () => showPopup('contact-sales-popup'));
+            document.getElementById('contact-support-link').addEventListener('click', () => showPopup('contact-sales-popup'));
+            
+            // Close popup buttons
+            document.querySelectorAll('.close-popup').forEach(button => {
+                button.addEventListener('click', function() {
+                    const popup = this.closest('.popup');
+                    if (popup) {
                         popup.style.display = 'none';
                         document.body.style.overflow = 'auto';
                     }
                 });
-            }
-        });
-        
-        // Download functionality
-        function downloadBabxRec(version, type) {
-            // Different download links for installer and portable versions
-            let downloadUrl;
+            });
             
-            if (type === 'installer') {
-                // Installer version (267 MB)
-                downloadUrl = 'https://drive.usercontent.google.com/download?id=10qoK6GmmNzJChMITbLAUKd8vKYyi9EaB&export=download&authuser=0&confirm=t&uuid=f2c3d4bd-9510-41d4-b9aa-be4ba7fc1a16&at=AN8xHoqf_9kPHw7l4VbOIQFUvLgG%3A1754209033795';
-            } else if (type === 'portable') {
-                // Portable version (140 MB)
-                downloadUrl = 'https://drive.usercontent.google.com/download?id=10qoK6GmmNzJChMITbLAUKd8vKYyi9EaB&export=download&authuser=0&confirm=t&uuid=f2c3d4bd-9510-41d4-b9aa-be4ba7fc1a16&at=AN8xHoqf_9kPHw7l4VbOIQFUvLgG%3A1754209033795';
-            }
+            // Close popup when clicking outside
+            document.querySelectorAll('.popup').forEach(popup => {
+                popup.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
             
-            // Create a temporary link and trigger download
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = `BabxRec_${version}_${type}.exe`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-        
-        // Add event listeners for all download buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.download-version') || e.target.closest('#download-installer-hero') || e.target.closest('#download-portable-hero') || e.target.closest('#download-installer-cta') || e.target.closest('#download-portable-cta')) {
+            // Auth form toggles
+            document.getElementById('signup-tab').addEventListener('click', () => toggleAuthForm('signup'));
+            document.getElementById('signin-tab').addEventListener('click', () => toggleAuthForm('signin'));
+            
+            // Form submissions
+            document.getElementById('signup-form').addEventListener('submit', function(e) {
                 e.preventDefault();
+                const formData = new FormData(this);
+                const userData = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    interest: formData.get('interest')
+                };
                 
-                const button = e.target.closest('button');
-                let version = 'latest';
-                let type = 'installer';
+                simulateAuth(userData);
+                hidePopup('signup-popup');
+                alert('Account created successfully! Welcome to BabxRec.');
+            });
+            
+            document.getElementById('signin-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const userData = {
+                    name: 'Demo User',
+                    email: formData.get('email')
+                };
                 
-                if (button.hasAttribute('data-version')) {
-                    version = button.getAttribute('data-version');
-                }
-                
-                if (button.hasAttribute('data-type')) {
-                    type = button.getAttribute('data-type');
-                } else if (button.id.includes('portable')) {
-                    type = 'portable';
-                } else if (button.id.includes('installer')) {
-                    type = 'installer';
-                }
-                
-                downloadBabxRec(version, type);
-            }
+                simulateAuth(userData);
+                hidePopup('signup-popup');
+                alert('Signed in successfully! Welcome back.');
+            });
+            
+            document.getElementById('contact-sales-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                hidePopup('contact-sales-popup');
+                alert('Thank you for your interest! Our sales team will contact you within 24 hours.');
+            });
+            
+            // Download buttons
+            document.getElementById('download-installer-hero').addEventListener('click', () => simulateDownload());
+            document.getElementById('download-installer-cta').addEventListener('click', () => simulateDownload());
+            
+            // Version download buttons
+            document.querySelectorAll('.download-version').forEach(button => {
+                button.addEventListener('click', function() {
+                    const version = this.getAttribute('data-version');
+                    simulateDownload(version);
+                });
+            });
+            
         });
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969565e0327a85bf',t:'MTc1NDIxOTczNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969c2d625196cc07',t:'MTc1NDI5MDgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
