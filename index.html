@@ -117,6 +117,36 @@
             color: #6366f1;
             background-color: rgba(99, 102, 241, 0.05);
         }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+            background: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .notification.success {
+            border-left: 4px solid #10b981;
+        }
+        .notification.error {
+            border-left: 4px solid #ef4444;
+        }
+        .notification.info {
+            border-left: 4px solid #3b82f6;
+        }
     </style>
 </head>
 <body>
@@ -136,7 +166,6 @@
                     <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="versions">Versions</a>
                     <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="pricing">Pricing</a>
                     <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="beta">Beta Program</a>
-                    <a href="#" class="nav-link text-gray-300 px-4 py-2 text-sm font-medium transition-all duration-200" data-page="faq">FAQ</a>
                     <button id="nav-signup-btn" class="ml-4 gradient-btn px-6 py-2 rounded-lg text-white font-medium text-sm" aria-label="Sign up for BabxRec">Sign Up</button>
                     <div id="nav-user-menu" class="ml-4 relative hidden">
                         <button id="nav-user-btn" class="flex items-center space-x-2 text-gray-300 hover:text-white px-3 py-2 rounded-lg hover:bg-gray-800 transition-all duration-200" aria-label="User menu">
@@ -150,8 +179,7 @@
                         </button>
                         <div id="nav-user-dropdown" class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 hidden">
                             <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Settings</a>
+                                <button id="nav-profile-btn" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Profile Settings</button>
                                 <hr class="border-gray-700 my-1">
                                 <button id="nav-logout-btn" class="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">Sign Out</button>
                             </div>
@@ -176,7 +204,6 @@
                 <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="versions">Versions</a>
                 <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="pricing">Pricing</a>
                 <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="beta">Beta Program</a>
-                <a href="#" class="mobile-nav-link text-gray-300 block px-3 py-2 text-base font-medium transition-all duration-200" data-page="faq">FAQ</a>
                 <button id="mobile-signup-btn" class="gradient-btn px-6 py-2 rounded-lg text-white font-medium w-full mt-2">Sign Up</button>
                 <div id="mobile-user-menu" class="mt-2 hidden">
                     <div class="flex items-center space-x-3 px-3 py-2 bg-gray-800 rounded-lg">
@@ -189,8 +216,7 @@
                         </div>
                     </div>
                     <div class="mt-2 space-y-1">
-                        <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Profile</a>
-                        <a href="#" class="block px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Settings</a>
+                        <button id="mobile-profile-btn" class="block w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Profile Settings</button>
                         <button id="mobile-logout-btn" class="block w-full text-left px-3 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white rounded">Sign Out</button>
                     </div>
                 </div>
@@ -323,12 +349,12 @@
                                 </div>
                                 <div>
                                     <span class="text-sm text-green-400 font-medium">Version Release</span>
-                                    <p class="text-xs text-gray-500">December 15, 2024</p>
+                                    <p class="text-xs text-gray-500">August 8, 2025</p>
                                 </div>
                             </div>
                             <h3 class="text-lg font-semibold mb-3">BabxRec Beta v1.0.1 Released</h3>
                             <p class="text-gray-400 text-sm mb-4">Major improvements to audio synchronization and UI enhancements. Better performance for long recordings and bug fixes.</p>
-                            <a href="#" class="nav-link text-indigo-400 hover:text-indigo-300 text-sm font-medium" data-page="versions">Read More →</a>
+                            <a href="https://discord.gg/DdPbVuuMDA" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Read More →</a>
                         </article>
                         
                         <!-- News Item 2 -->
@@ -341,7 +367,7 @@
                                 </div>
                                 <div>
                                     <span class="text-sm text-blue-400 font-medium">Feature Update</span>
-                                    <p class="text-xs text-gray-500">December 10, 2024</p>
+                                    <p class="text-xs text-gray-500">August 3, 2025</p>
                                 </div>
                             </div>
                             <h3 class="text-lg font-semibold mb-3">Enhanced 2K Recording Quality</h3>
@@ -359,13 +385,90 @@
                                 </div>
                                 <div>
                                     <span class="text-sm text-purple-400 font-medium">Community</span>
-                                    <p class="text-xs text-gray-500">December 5, 2024</p>
+                                    <p class="text-xs text-gray-500">July 31, 2025</p>
                                 </div>
                             </div>
                             <h3 class="text-lg font-semibold mb-3">Growing Community</h3>
                             <p class="text-gray-400 text-sm mb-4">Over 10,000 users have joined BabxRec! Thank you for your support and feedback. Join our Discord for tips and updates.</p>
-                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Join Discord →</a>
+                            <a href="https://discord.gg/eDBmRg7Vns" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Join Discord →</a>
                         </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="py-20 bg-gray-900">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                        <p class="text-xl text-gray-400">Find answers to common questions about BabxRec.</p>
+                    </div>
+                    
+                    <div class="space-y-6" id="home-faq-container">
+                        <!-- FAQ Item 1 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="home-1" aria-expanded="false" aria-controls="faq-answer-home-1">
+                                <span class="text-lg font-medium">What are the system requirements?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-home-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-home-1">
+                                <p class="text-gray-400">BabxRec works on Windows 10 and 11 with at least 4GB RAM, 2GHz dual-core processor, and 500MB free disk space. For 2K recording, we recommend 8GB RAM and a more powerful processor.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 2 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="home-2" aria-expanded="false" aria-controls="faq-answer-home-2">
+                                <span class="text-lg font-medium">Can I record specific applications only?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-home-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-home-2">
+                                <p class="text-gray-400">Yes! BabxRec allows you to record your entire screen, a specific application window, or even a custom-selected region. This gives you complete control over what appears in your recordings.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 3 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="home-3" aria-expanded="false" aria-controls="faq-answer-home-3">
+                                <span class="text-lg font-medium">What file formats does BabxRec support?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-home-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-home-3">
+                                <p class="text-gray-400">BabxRec supports exporting to MP4, AVI, MOV, and GIF formats. Pro and Enterprise users get additional options including WebM and custom codec configurations.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 4 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="home-4" aria-expanded="false" aria-controls="faq-answer-home-4">
+                                <span class="text-lg font-medium">Is there a watermark on the free version?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-home-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-home-4">
+                                <p class="text-gray-400">No, BabxRec's free version does not include any watermarks on your recordings. You get clean, professional recordings regardless of which plan you choose.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 5 -->
+                        <div class="bg-gray-800 rounded-lg overflow-hidden">
+                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="home-5" aria-expanded="false" aria-controls="faq-answer-home-5">
+                                <span class="text-lg font-medium">How do I get support if I have issues?</span>
+                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-home-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div class="px-6 pb-4 hidden" id="faq-answer-home-5">
+                                <p class="text-gray-400">You can contact our support team via email at babxstudios@gmail.com or join our Discord community for quick help and real-time assistance from other users and developers.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -493,7 +596,7 @@
                                     <h3 class="text-2xl font-bold">Beta v1.0.1</h3>
                                     <span class="ml-3 px-3 py-1 version-badge rounded-full text-xs font-medium">Current</span>
                                 </div>
-                                <span class="text-gray-400">December 2024</span>
+                                <span class="text-gray-400">August 8, 2025</span>
                             </div>
                             <ul class="space-y-2 mb-6">
                                 <li class="flex items-start">
@@ -527,7 +630,7 @@
                         <div class="popup-card rounded-xl p-6">
                             <div class="flex flex-col md:flex-row justify-between md:items-center mb-4">
                                 <h3 class="text-2xl font-bold">Beta v1.0.0</h3>
-                                <span class="text-gray-400">November 2024</span>
+                                <span class="text-gray-400">July 30, 2025</span>
                             </div>
                             <ul class="space-y-2 mb-6">
                                 <li class="flex items-start">
@@ -549,12 +652,12 @@
                                     <span>Export to MP4 format.</span>
                                 </li>
                             </ul>
-                            <button class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 download-version" data-version="1.0.0">
-                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <a href="https://drive.usercontent.google.com/download?id=1MttqcNd9mJSYlYOJvD3r3zi1F0hbdARf&export=download&authuser=3&confirm=t&uuid=2ce7c5b7-fb6d-428f-b766-0cca9d2b248a&at=AN8xHooykjJuDDroGZ2NQTVXfw26:" target="_blank" class="border border-indigo-500 text-indigo-400 px-6 py-2 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 inline-flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                 </svg>
                                 Download
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -801,19 +904,13 @@
                             <div class="text-center">
                                 <h4 class="text-xl font-semibold mb-4">Ready to Join?</h4>
                                 <p class="text-gray-300 mb-6">Join our Discord server and request beta access in the #beta-requests channel.</p>
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <a href="https://discord.gg/EXAMPLE" target="_blank" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg inline-flex items-center justify-center">
+                                <div class="flex justify-center">
+                                    <a href="https://discord.gg/UbGA2V4Ahx" target="_blank" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg inline-flex items-center justify-center">
                                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                                         </svg>
                                         Join Discord & Request Beta Access
                                     </a>
-                                    <button class="nav-link border border-indigo-500 text-indigo-400 px-8 py-3 rounded-lg font-medium hover:bg-indigo-900 hover:bg-opacity-30 transition duration-300 inline-flex items-center justify-center" data-page="beta">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                        Learn More About Beta
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -822,84 +919,136 @@
             </section>
         </div>
 
-        <!-- FAQ Page -->
-        <div id="faq-page" class="page-content">
-            <section class="pt-28 pb-20 bg-gray-800">
+        <!-- Privacy Policy Page -->
+        <div id="privacy-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-900">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-16">
-                        <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-                        <p class="text-xl text-gray-400">Find answers to common questions about BabxRec.</p>
+                        <h2 class="text-3xl font-bold mb-4">Privacy Policy</h2>
+                        <p class="text-xl text-gray-400">Last updated: August 2025</p>
                     </div>
                     
-                    <div class="space-y-6" id="faq-container">
-                        <!-- FAQ Item 1 -->
-                        <div class="bg-gray-900 rounded-lg overflow-hidden">
-                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="1" aria-expanded="false" aria-controls="faq-answer-1">
-                                <span class="text-lg font-medium">What are the system requirements?</span>
-                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="px-6 pb-4 hidden" id="faq-answer-1">
-                                <p class="text-gray-400">BabxRec works on Windows 10 and 11 with at least 4GB RAM, 2GHz dual-core processor, and 500MB free disk space. For 2K recording, we recommend 8GB RAM and a more powerful processor.</p>
-                            </div>
+                    <div class="prose prose-invert max-w-none">
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Information We Collect</h3>
+                            <p class="text-gray-300 mb-4">When you use BabxRec, we may collect the following types of information:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Account information (name, email address) when you create an account</li>
+                                <li>Usage data to improve our software performance</li>
+                                <li>Technical information about your device and operating system</li>
+                                <li>Crash reports and error logs to help us fix bugs</li>
+                            </ul>
                         </div>
                         
-                        <!-- FAQ Item 2 -->
-                        <div class="bg-gray-900 rounded-lg overflow-hidden">
-                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="2" aria-expanded="false" aria-controls="faq-answer-2">
-                                <span class="text-lg font-medium">Can I record specific applications only?</span>
-                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="px-6 pb-4 hidden" id="faq-answer-2">
-                                <p class="text-gray-400">Yes! BabxRec allows you to record your entire screen, a specific application window, or even a custom-selected region. This gives you complete control over what appears in your recordings.</p>
-                            </div>
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">How We Use Your Information</h3>
+                            <p class="text-gray-300 mb-4">We use the collected information to:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Provide and maintain our screen recording software</li>
+                                <li>Improve our products and develop new features</li>
+                                <li>Send you important updates about BabxRec</li>
+                                <li>Provide customer support when needed</li>
+                                <li>Ensure the security and integrity of our services</li>
+                            </ul>
                         </div>
                         
-                        <!-- FAQ Item 3 -->
-                        <div class="bg-gray-900 rounded-lg overflow-hidden">
-                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="3" aria-expanded="false" aria-controls="faq-answer-3">
-                                <span class="text-lg font-medium">What file formats does BabxRec support?</span>
-                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="px-6 pb-4 hidden" id="faq-answer-3">
-                                <p class="text-gray-400">BabxRec supports exporting to MP4, AVI, MOV, and GIF formats. Pro and Enterprise users get additional options including WebM and custom codec configurations.</p>
-                            </div>
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Data Storage and Security</h3>
+                            <p class="text-gray-300 mb-4">Your privacy and data security are important to us:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>All recordings are stored locally on your device by default</li>
+                                <li>We use industry-standard encryption to protect your data</li>
+                                <li>We do not sell or share your personal information with third parties</li>
+                                <li>You can delete your account and data at any time</li>
+                            </ul>
                         </div>
                         
-                        <!-- FAQ Item 4 -->
-                        <div class="bg-gray-900 rounded-lg overflow-hidden">
-                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="4" aria-expanded="false" aria-controls="faq-answer-4">
-                                <span class="text-lg font-medium">Is there a watermark on the free version?</span>
-                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="px-6 pb-4 hidden" id="faq-answer-4">
-                                <p class="text-gray-400">No, BabxRec's free version does not include any watermarks on your recordings. You get clean, professional recordings regardless of which plan you choose.</p>
-                            </div>
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Your Rights</h3>
+                            <p class="text-gray-300 mb-4">You have the right to:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Access the personal information we have about you</li>
+                                <li>Correct any inaccurate or incomplete information</li>
+                                <li>Delete your personal information</li>
+                                <li>Opt out of marketing communications</li>
+                                <li>Export your data in a portable format</li>
+                            </ul>
                         </div>
                         
-                        <!-- FAQ Item 5 -->
-                        <div class="bg-gray-900 rounded-lg overflow-hidden">
-                            <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" data-faq-toggle="5" aria-expanded="false" aria-controls="faq-answer-5">
-                                <span class="text-lg font-medium">How do I get support if I have issues?</span>
-                                <svg class="h-5 w-5 text-indigo-400 transform transition-transform duration-300" id="arrow-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div class="px-6 pb-4 hidden" id="faq-answer-5">
-                                <p class="text-gray-400">Free users can access our knowledge base. Pro users get email support with 24-hour response time, while Enterprise users receive priority support with dedicated account managers.</p>
-                            </div>
+                        <div class="bg-gray-800 rounded-xl p-8">
+                            <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
+                            <p class="text-gray-300">If you have any questions about this Privacy Policy, please contact us at:</p>
+                            <p class="text-indigo-400 mt-2">babxstudios@gmail.com</p>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
+
+        <!-- Terms of Service Page -->
+        <div id="terms-page" class="page-content">
+            <section class="pt-28 pb-20 bg-gray-900">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl font-bold mb-4">Terms of Service</h2>
+                        <p class="text-xl text-gray-400">Last updated: August 2025</p>
+                    </div>
+                    
+                    <div class="prose prose-invert max-w-none">
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Acceptance of Terms</h3>
+                            <p class="text-gray-300">By downloading, installing, or using BabxRec, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our software.</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">License and Usage</h3>
+                            <p class="text-gray-300 mb-4">BabxStudios grants you a limited, non-exclusive, non-transferable license to use BabxRec subject to these terms:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>You may use BabxRec for personal or commercial purposes</li>
+                                <li>You may not reverse engineer, decompile, or disassemble the software</li>
+                                <li>You may not distribute, sell, or sublicense the software</li>
+                                <li>You are responsible for complying with applicable laws when recording</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">User Responsibilities</h3>
+                            <p class="text-gray-300 mb-4">When using BabxRec, you agree to:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Respect the privacy and rights of others when recording</li>
+                                <li>Obtain necessary permissions before recording copyrighted content</li>
+                                <li>Not use the software for illegal or harmful activities</li>
+                                <li>Keep your account information secure and confidential</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Subscription and Payments</h3>
+                            <p class="text-gray-300 mb-4">For paid plans:</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Subscriptions are billed monthly or annually as selected</li>
+                                <li>You can cancel your subscription at any time</li>
+                                <li>Refunds are provided according to our refund policy</li>
+                                <li>Prices may change with 30 days notice</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-xl p-8 mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Limitation of Liability</h3>
+                            <p class="text-gray-300">BabxRec is provided "as is" without warranties. BabxStudios shall not be liable for any damages arising from the use of this software, including but not limited to data loss, system damage, or business interruption.</p>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-xl p-8">
+                            <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                            <p class="text-gray-300">For questions about these Terms of Service, contact us at:</p>
+                            <p class="text-indigo-400 mt-2">babxstudios@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
     </div>
 
     <!-- Footer -->
@@ -914,25 +1063,25 @@
                     <p class="text-gray-400 mb-4">A powerful screen recorder for Windows, developed by Saketh at BabxStudios.</p>
                     <div class="flex space-x-4">
                         <!-- YouTube -->
-                        <a href="https://www.youtube.com/channel/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="YouTube">
+                        <a href="https://youtube.com/@mr_bangaram_playz?si=mzqXWwECgpxmp-_6" target="_blank" class="text-gray-400 hover:text-white" aria-label="YouTube">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                             </svg>
                         </a>
                         <!-- Instagram -->
-                        <a href="https://www.instagram.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="Instagram">
+                        <a href="https://www.instagram.com/mr_bangaram_playz/" target="_blank" class="text-gray-400 hover:text-white" aria-label="Instagram">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
                             </svg>
                         </a>
                         <!-- Discord -->
-                        <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="Discord">
+                        <a href="https://discord.gg/eDBmRg7Vns" target="_blank" class="text-gray-400 hover:text-white" aria-label="Discord">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                             </svg>
                         </a>
                         <!-- GitHub -->
-                        <a href="https://github.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="GitHub">
+                        <a href="https://github.com/SaakethPandu" target="_blank" class="text-gray-400 hover:text-white" aria-label="GitHub">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                             </svg>
@@ -953,16 +1102,15 @@
                 <div class="col-span-1">
                     <h3 class="text-lg font-semibold mb-4">Support</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="faq">FAQ</a></li>
-                        <li><a href="#" id="contact-support-link" class="text-gray-400 hover:text-white">Contact Support</a></li>
+                        <li><button id="footer-contact-support" class="text-gray-400 hover:text-white text-left">Contact Support</button></li>
                     </ul>
                 </div>
                 
                 <div class="col-span-1">
                     <h3 class="text-lg font-semibold mb-4">Legal</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="privacy">Privacy Policy</a></li>
+                        <li><a href="#" class="nav-link text-gray-400 hover:text-white" data-page="terms">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -980,8 +1128,8 @@
 
     <!-- Sign Up Popup -->
     <div class="popup" id="signup-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-md mx-auto w-full">
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="max-w-md w-full">
                 <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
                     <div class="p-6 md:p-8">
                         <div class="flex justify-between items-center mb-8">
@@ -1096,8 +1244,139 @@
                         </form>
                         
                         <div class="mt-6 text-sm text-gray-400 text-center">
-                            <p>By signing up, you agree to our <a href="#" class="text-indigo-400 hover:text-indigo-300">Terms of Service</a> and <a href="#" class="text-indigo-400 hover:text-indigo-300">Privacy Policy</a>.</p>
+                            <p>By signing up, you agree to our <a href="#" class="nav-link text-indigo-400 hover:text-indigo-300" data-page="terms">Terms of Service</a> and <a href="#" class="nav-link text-indigo-400 hover:text-indigo-300" data-page="privacy">Privacy Policy</a>.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Support Popup -->
+    <div class="popup" id="contact-support-popup">
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="max-w-md w-full">
+                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-2xl font-bold">Contact Support</h2>
+                            <button class="close-popup text-gray-400 hover:text-white" aria-label="Close popup">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6 text-center">Choose how you'd like to get support:</p>
+                        
+                        <div class="space-y-4">
+                            <!-- Email Support -->
+                            <a href="mailto:babxstudios@gmail.com" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 px-6 py-4 rounded-xl text-white font-semibold shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="font-semibold">Email Support</div>
+                                    <div class="text-sm opacity-90">babxstudios@gmail.com</div>
+                                </div>
+                            </a>
+                            
+                            <!-- Discord Support -->
+                            <a href="https://discord.gg/rDmSSS8DdR" target="_blank" class="w-full border border-indigo-500 text-indigo-400 px-6 py-4 rounded-xl font-semibold hover:bg-indigo-900 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center space-x-3">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="font-semibold">Discord Support</div>
+                                    <div class="text-sm opacity-90">Join our community</div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div class="mt-6 text-sm text-gray-400 text-center">
+                            <p>For fastest response, try Discord first. Email responses within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Settings Popup -->
+    <div class="popup" id="profile-settings-popup">
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="max-w-md w-full">
+                <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-2xl font-bold">Profile Settings</h2>
+                            <button class="close-popup text-gray-400 hover:text-white" aria-label="Close popup">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <form id="profile-settings-form" class="space-y-6">
+                            <div class="text-center mb-6">
+                                <div class="relative inline-block">
+                                    <div id="profile-avatar-container" class="h-20 w-20 rounded-full bg-indigo-600 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-indigo-700 transition-colors duration-200 overflow-hidden">
+                                        <span id="profile-avatar-initial" class="text-2xl font-bold text-white">U</span>
+                                        <img id="profile-avatar-image" class="w-full h-full object-cover hidden" alt="Profile Avatar">
+                                    </div>
+                                    <input type="file" id="avatar-upload" accept="image/*" class="hidden">
+                                </div>
+                                <button type="button" id="change-avatar-btn" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Change Avatar</button>
+                            </div>
+                            
+                            <div>
+                                <label for="profile-name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                                <input type="text" id="profile-name" name="name" required class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div>
+                                <label for="profile-email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                                <input type="email" id="profile-email" name="email" readonly class="w-full px-3 py-2 bg-gray-600 border border-gray-600 rounded-lg text-gray-300 cursor-not-allowed" placeholder="your@email.com">
+                                <p class="text-xs text-gray-400 mt-1">Email cannot be changed</p>
+                            </div>
+                            
+                            <div>
+                                <label for="profile-interest" class="block text-sm font-medium text-gray-300 mb-2">Current Plan</label>
+                                <select id="profile-interest" name="interest" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    <option value="free">Free Version</option>
+                                    <option value="pro">Pro Version ($2.99/month)</option>
+                                    <option value="enterprise">Enterprise Version ($5.99/month)</option>
+                                    <option value="beta">Beta Testing Program</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Account Statistics</label>
+                                <div class="bg-gray-700 rounded-lg p-4 space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-400">Member since:</span>
+                                        <span id="profile-member-since" class="text-white">August 2025</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-400">Total downloads:</span>
+                                        <span class="text-white">1</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-400">Last sign in:</span>
+                                        <span class="text-white">Today</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-3">
+                                <button type="submit" class="flex-1 gradient-btn px-6 py-3 rounded-lg text-white font-medium shadow-lg">
+                                    Save Changes
+                                </button>
+                                <button type="button" class="close-popup flex-1 border border-gray-600 text-gray-300 px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition duration-300">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1106,8 +1385,8 @@
 
     <!-- Contact Sales Popup -->
     <div class="popup" id="contact-sales-popup">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-            <div class="max-w-md mx-auto w-full">
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="max-w-md w-full">
                 <div class="bg-gray-800 bg-opacity-95 rounded-xl overflow-hidden shadow-2xl border border-gray-700">
                     <div class="p-6 md:p-8">
                         <div class="flex justify-between items-center mb-8">
@@ -1169,6 +1448,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
 
     <script>
         // Page navigation functionality
@@ -1312,14 +1594,31 @@
             document.getElementById('mobile-user-menu').classList.remove('hidden');
             
             // Update user info
-            const initial = userData.name.charAt(0).toUpperCase();
-            document.getElementById('nav-user-initial').textContent = initial;
             document.getElementById('nav-username').textContent = userData.name;
-            document.getElementById('mobile-user-initial').textContent = initial;
             document.getElementById('mobile-username').textContent = userData.name;
+            
+            // Update avatar display
+            updateUserAvatarDisplay(userData);
             
             // Store user data
             localStorage.setItem('babxrec_user', JSON.stringify(userData));
+        }
+
+        // Update user avatar display across all locations
+        function updateUserAvatarDisplay(userData) {
+            const initial = userData.name.charAt(0).toUpperCase();
+            const navUserInitial = document.getElementById('nav-user-initial');
+            const mobileUserInitial = document.getElementById('mobile-user-initial');
+            
+            if (userData.avatar) {
+                // Create and display avatar image, completely hide text
+                navUserInitial.innerHTML = `<img src="${userData.avatar}" alt="Avatar" class="w-full h-full object-cover rounded-full">`;
+                mobileUserInitial.innerHTML = `<img src="${userData.avatar}" alt="Avatar" class="w-full h-full object-cover rounded-full">`;
+            } else {
+                // Show initial letter only
+                navUserInitial.innerHTML = initial;
+                mobileUserInitial.innerHTML = initial;
+            }
         }
 
         function logout() {
@@ -1344,9 +1643,216 @@
             }
         }
 
+        // Notification system
+        function showNotification(message, type = 'success', duration = 4000) {
+            const container = document.getElementById('notification-container');
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            // Create icon based on type
+            let icon = '';
+            switch(type) {
+                case 'success':
+                    icon = `<svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>`;
+                    break;
+                case 'error':
+                    icon = `<svg class="w-5 h-5 text-red-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>`;
+                    break;
+                case 'info':
+                    icon = `<svg class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>`;
+                    break;
+            }
+            
+            notification.innerHTML = `
+                <div class="flex items-start">
+                    ${icon}
+                    <div class="flex-1">
+                        <p class="text-sm font-medium">${message}</p>
+                    </div>
+                    <button class="ml-4 text-gray-400 hover:text-white" onclick="this.parentElement.parentElement.remove()">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Show notification with animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto remove after duration
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, duration);
+        }
+
+        // Show sign in error
+        function showSignInError(message) {
+            // Remove existing error if any
+            clearSignInError();
+            
+            // Create error element
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'signin-error';
+            errorDiv.className = 'bg-red-900 bg-opacity-20 border border-red-800 rounded-lg p-4 mb-4';
+            errorDiv.innerHTML = `
+                <div class="flex items-start">
+                    <svg class="h-5 w-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                        <h4 class="font-semibold text-red-400 mb-1">Sign In Error</h4>
+                        <p class="text-red-300 text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Insert error before the form
+            const signinForm = document.getElementById('signin-form');
+            signinForm.parentNode.insertBefore(errorDiv, signinForm);
+        }
+
+        // Clear sign in error
+        function clearSignInError() {
+            const existingError = document.getElementById('signin-error');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        // Profile settings functionality
+        function showProfileSettings() {
+            const userData = JSON.parse(localStorage.getItem('babxrec_user'));
+            if (!userData) return;
+            
+            // Populate form with current user data
+            document.getElementById('profile-name').value = userData.name;
+            document.getElementById('profile-email').value = userData.email;
+            document.getElementById('profile-interest').value = userData.interest || 'free';
+            document.getElementById('profile-avatar-initial').textContent = userData.name.charAt(0).toUpperCase();
+            
+            // Load saved avatar if exists
+            if (userData.avatar) {
+                displayAvatar(userData.avatar);
+            } else {
+                hideAvatar();
+            }
+            
+            showPopup('profile-settings-popup');
+        }
+
+        // Avatar functionality
+        function displayAvatar(avatarDataUrl) {
+            const avatarImage = document.getElementById('profile-avatar-image');
+            const avatarInitial = document.getElementById('profile-avatar-initial');
+            
+            if (avatarDataUrl) {
+                // Profile settings popup avatar
+                avatarImage.src = avatarDataUrl;
+                avatarImage.classList.remove('hidden');
+                avatarInitial.classList.add('hidden');
+                
+                // Update navigation avatars using the main function
+                const userData = JSON.parse(localStorage.getItem('babxrec_user'));
+                userData.avatar = avatarDataUrl;
+                updateUserAvatarDisplay(userData);
+            }
+        }
+
+        function hideAvatar() {
+            const avatarImage = document.getElementById('profile-avatar-image');
+            const avatarInitial = document.getElementById('profile-avatar-initial');
+            
+            // Profile settings popup
+            avatarImage.classList.add('hidden');
+            avatarInitial.classList.remove('hidden');
+            
+            // Reset navigation avatars to show initials
+            const userData = JSON.parse(localStorage.getItem('babxrec_user'));
+            if (userData) {
+                userData.avatar = null;
+                updateUserAvatarDisplay(userData);
+            }
+        }
+
+        function handleAvatarUpload(file) {
+            if (!file) return;
+            
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please select a valid image file.', 'error');
+                return;
+            }
+            
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('Please select an image smaller than 5MB.', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const avatarDataUrl = e.target.result;
+                displayAvatar(avatarDataUrl);
+                
+                // Store avatar in user data
+                const userData = JSON.parse(localStorage.getItem('babxrec_user'));
+                userData.avatar = avatarDataUrl;
+                localStorage.setItem('babxrec_user', JSON.stringify(userData));
+                
+                // Update in registered users as well
+                const registeredUsers = JSON.parse(localStorage.getItem('babxrec_registered_users') || '{}');
+                if (registeredUsers[userData.email]) {
+                    registeredUsers[userData.email].avatar = avatarDataUrl;
+                    localStorage.setItem('babxrec_registered_users', JSON.stringify(registeredUsers));
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updateProfile(newUserData) {
+            // Get current user data to preserve avatar
+            const currentUser = JSON.parse(localStorage.getItem('babxrec_user'));
+            if (currentUser && currentUser.avatar) {
+                newUserData.avatar = currentUser.avatar;
+            }
+            
+            // Update stored user data
+            const registeredUsers = JSON.parse(localStorage.getItem('babxrec_registered_users') || '{}');
+            registeredUsers[newUserData.email] = newUserData;
+            localStorage.setItem('babxrec_registered_users', JSON.stringify(registeredUsers));
+            
+            // Update current session
+            localStorage.setItem('babxrec_user', JSON.stringify(newUserData));
+            
+            // Update UI
+            document.getElementById('nav-username').textContent = newUserData.name;
+            document.getElementById('mobile-username').textContent = newUserData.name;
+            
+            // Update avatar display using the main function
+            updateUserAvatarDisplay(newUserData);
+        }
+
         // Download functionality
         function simulateDownload(version = null) {
-            const downloadUrl = 'https://release-assets.githubusercontent.com/github-production-release-asset/1031643127/9dd849ae-7aab-4237-89e4-ee5a3bd8fb56?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-04T15%3A10%3A42Z&rscd=attachment%3B+filename%3Dbabxrec.beta.v1.0.1.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-08-04T14%3A09%3A58Z&ske=2025-08-04T15%3A10%3A42Z&sks=b&skv=2018-11-09&sig=SM7%2ByhuyUckKHdfNKeaBvk5WyweY1PM%2FnC93QBrNtWc%3D&jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc1NDMxNzI0NSwibmJmIjoxNzU0MzE2OTQ1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.DK5O1axsYIdWUGkkW0qT6ZeA-VEcxmBANXRrzRUZe9c&response-content-disposition=attachment%3B%20filename%3Dbabxrec.beta.v1.0.1.exe&response-content-type=application%2Foctet-stream';
+            const downloadUrl = 'https://release-assets.githubusercontent.com/github-production-release-asset/1031643127/474a242a-0fa1-4fd8-947f-b20ba76fd036?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-04T07%3A19%3A11Z&rscd=attachment%3B+filename%3Dbabxrec.beta.v1.0.1.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-08-04T06%3A18%3A20Z&ske=2025-08-04T07%3A19%3A11Z&sks=b&skv=2018-11-09&sig=%2B%2F5i4Wmx4Wk2W7RIGMjzQx3E5X5OQyIJhCBDupFvCsw%3D&jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc1NDI5MDE5MCwibmJmIjoxNzU0Mjg5ODkwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLGoiQIFsGJUOaK8S-jSIcVQe_Qrq0qCLie6aMz6LzM&response-content-disposition=attachment%3B%20filename%3Dbabxrec.beta.v1.0.1.exe&response-content-type=application%2Foctet-stream';
             
             // Create temporary link and trigger download
             const link = document.createElement('a');
@@ -1384,6 +1890,16 @@
             // User dropdown toggle
             document.getElementById('nav-user-btn').addEventListener('click', toggleUserDropdown);
             
+            // Profile settings buttons
+            document.getElementById('nav-profile-btn').addEventListener('click', () => {
+                showProfileSettings();
+                document.getElementById('nav-user-dropdown').classList.add('hidden');
+            });
+            document.getElementById('mobile-profile-btn').addEventListener('click', () => {
+                showProfileSettings();
+                toggleMobileMenu();
+            });
+            
             // Logout buttons
             document.getElementById('nav-logout-btn').addEventListener('click', logout);
             document.getElementById('mobile-logout-btn').addEventListener('click', logout);
@@ -1396,6 +1912,9 @@
                 });
             });
             
+            // Contact support buttons
+            document.getElementById('footer-contact-support').addEventListener('click', () => showPopup('contact-support-popup'));
+            
             // Signup buttons
             document.getElementById('nav-signup-btn').addEventListener('click', () => showPopup('signup-popup'));
             document.getElementById('mobile-signup-btn').addEventListener('click', () => showPopup('signup-popup'));
@@ -1403,7 +1922,6 @@
             // Contact sales buttons
             document.getElementById('contact-sales-link').addEventListener('click', () => showPopup('contact-sales-popup'));
             document.getElementById('enterprise-contact-sales').addEventListener('click', () => showPopup('contact-sales-popup'));
-            document.getElementById('contact-support-link').addEventListener('click', () => showPopup('contact-sales-popup'));
             
             // Close popup buttons
             document.querySelectorAll('.close-popup').forEach(button => {
@@ -1427,41 +1945,106 @@
             });
             
             // Auth form toggles
-            document.getElementById('signup-tab').addEventListener('click', () => toggleAuthForm('signup'));
-            document.getElementById('signin-tab').addEventListener('click', () => toggleAuthForm('signin'));
+            document.getElementById('signup-tab').addEventListener('click', () => {
+                clearSignInError();
+                toggleAuthForm('signup');
+            });
+            document.getElementById('signin-tab').addEventListener('click', () => {
+                clearSignInError();
+                toggleAuthForm('signin');
+            });
+            
+            // Avatar upload functionality
+            document.getElementById('change-avatar-btn').addEventListener('click', function() {
+                document.getElementById('avatar-upload').click();
+            });
+            
+            document.getElementById('profile-avatar-container').addEventListener('click', function() {
+                document.getElementById('avatar-upload').click();
+            });
+            
+            document.getElementById('avatar-upload').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    handleAvatarUpload(file);
+                }
+            });
             
             // Form submissions
             document.getElementById('signup-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
+                let userName = formData.get('name');
+                const userEmail = formData.get('email');
+                
+                // If no name provided, extract from email
+                if (!userName || userName.trim() === '') {
+                    userName = userEmail.split('@')[0];
+                    // Capitalize first letter
+                    userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+                }
+                
                 const userData = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
+                    name: userName,
+                    email: userEmail,
                     interest: formData.get('interest')
                 };
                 
+                // Store user data with email as key (allow re-signup)
+                const registeredUsers = JSON.parse(localStorage.getItem('babxrec_registered_users') || '{}');
+                registeredUsers[userEmail] = userData;
+                localStorage.setItem('babxrec_registered_users', JSON.stringify(registeredUsers));
+                
                 simulateAuth(userData);
                 hidePopup('signup-popup');
-                alert('Account created successfully! Welcome to BabxRec.');
+                showNotification('Account created successfully! Welcome to BabxRec.', 'success');
             });
             
             document.getElementById('signin-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
-                const userData = {
-                    name: 'Demo User',
-                    email: formData.get('email')
-                };
+                const email = formData.get('email');
+                
+                // Check if email is registered and get user data
+                const registeredUsers = JSON.parse(localStorage.getItem('babxrec_registered_users') || '{}');
+                
+                if (!registeredUsers[email]) {
+                    // Show error message
+                    showSignInError('This email is not registered. Please sign up first or check your email address.');
+                    return;
+                }
+                
+                // Clear any existing error
+                clearSignInError();
+                
+                // Get the stored user data
+                const userData = registeredUsers[email];
                 
                 simulateAuth(userData);
                 hidePopup('signup-popup');
-                alert('Signed in successfully! Welcome back.');
+                showNotification('Signed in successfully! Welcome back.', 'success');
             });
             
             document.getElementById('contact-sales-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 hidePopup('contact-sales-popup');
-                alert('Thank you for your interest! Our sales team will contact you within 24 hours.');
+                showNotification('Thank you for your interest! Our sales team will contact you within 24 hours.', 'success');
+            });
+            
+            document.getElementById('profile-settings-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const currentUser = JSON.parse(localStorage.getItem('babxrec_user'));
+                
+                const updatedUserData = {
+                    name: formData.get('name'),
+                    email: currentUser.email, // Email cannot be changed
+                    interest: formData.get('interest')
+                };
+                
+                updateProfile(updatedUserData);
+                hidePopup('profile-settings-popup');
+                showNotification('Profile updated successfully!', 'success');
             });
             
             // Download buttons
@@ -1478,5 +2061,5 @@
             
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'969c2d625196cc07',t:'MTc1NDI5MDgyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a43632f7aa9a7d',t:'MTc1NDM3NTA2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
