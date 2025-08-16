@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="KyjVEJtVERCqApIoeEdG1U6VuBQZRuytQYNeST3KX_g" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BabxRec - Screen Recorder by BabxStudios</title>
     <meta name="description" content="BabxRec is a powerful, lightweight screen recorder for Windows. Created by BabxStudios and developed by Saketh to make screen recording effortless.">
@@ -148,6 +147,23 @@
         .notification.info {
             border-left: 4px solid #3b82f6;
         }
+        .ad-box {
+            transition: all 0.3s ease;
+        }
+        .ad-box:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 1023px) {
+            .ad-box.fixed.left-4,
+            .ad-box.fixed.right-4 {
+                display: none !important;
+            }
+        }
+        @media (max-width: 767px) {
+            .ad-box.fixed.bottom-4 {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,6 +241,40 @@
         </div>
     </nav>
 
+    <!-- Left Sidebar Ad -->
+    <div class="ad-box fixed left-4 top-24 z-40 hidden lg:block w-40 h-96 bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-. "
+             crossorigin="anonymous"></script>
+        <!-- vertical 1 -->
+        <ins class="adsbygoogle"
+             style="display:block;width:160px;height:600px;"
+             data-ad-client="ca-pub-. "
+             data-ad-slot="3248671714"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- Right Sidebar Ad -->
+    <div class="ad-box fixed right-4 top-24 z-40 hidden lg:block w-40 h-96 bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-. "
+             crossorigin="anonymous"></script>
+        <!-- vertical 1 -->
+        <ins class="adsbygoogle"
+             style="display:block;width:160px;height:600px;"
+             data-ad-client="ca-pub-. "
+             data-ad-slot="3248671714"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+
+
     <!-- Main Content Container -->
     <div id="main-content">
         <!-- Home Page -->
@@ -256,7 +306,7 @@
                         </div>
                         <div class="md:w-1/2 mt-12 md:mt-0">
                             <div class="screenshot-container">
-                                <img src="https://i.imgur.com/YLcxdas.jpeg" alt="BabxRec Screenshot showing the main interface" class="w-full h-auto rounded-lg">
+                                <img src="https://i.imgur.com/2kgSGbf.png" alt="BabxRec Screenshot showing the main interface" class="w-full h-auto rounded-lg">
                             </div>
                         </div>
                     </div>
@@ -355,7 +405,7 @@
                             </div>
                             <h3 class="text-lg font-semibold mb-3">BabxRec Beta v1.0.1 Released</h3>
                             <p class="text-gray-400 text-sm mb-4">Major improvements to audio synchronization and UI enhancements. Better performance for long recordings and bug fixes.</p>
-                            <a href="https://discord.gg/DdPbVuuMDA" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Read More →</a>
+                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Read More →</a>
                         </article>
                         
                         <!-- News Item 2 -->
@@ -391,7 +441,7 @@
                             </div>
                             <h3 class="text-lg font-semibold mb-3">Growing Community</h3>
                             <p class="text-gray-400 text-sm mb-4">Over 10,000 users have joined BabxRec! Thank you for your support and feedback. Join our Discord for tips and updates.</p>
-                            <a href="https://discord.gg/eDBmRg7Vns" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Join Discord →</a>
+                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium">Join Discord →</a>
                         </article>
                     </div>
                 </div>
@@ -906,7 +956,7 @@
                                 <h4 class="text-xl font-semibold mb-4">Ready to Join?</h4>
                                 <p class="text-gray-300 mb-6">Join our Discord server and request beta access in the #beta-requests channel.</p>
                                 <div class="flex justify-center">
-                                    <a href="https://discord.gg/UbGA2V4Ahx" target="_blank" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg inline-flex items-center justify-center">
+                                    <a href="https://discord.gg/EXAMPLE" target="_blank" class="gradient-btn px-8 py-3 rounded-lg text-white font-medium shadow-lg inline-flex items-center justify-center">
                                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                                         </svg>
@@ -979,7 +1029,7 @@
                         <div class="bg-gray-800 rounded-xl p-8">
                             <h3 class="text-2xl font-bold mb-4">Contact Us</h3>
                             <p class="text-gray-300">If you have any questions about this Privacy Policy, please contact us at:</p>
-                            <p class="text-indigo-400 mt-2">babxstudios@gmail.com</p>
+                            <p class="text-indigo-400 mt-2">privacy@babxstudios.com</p>
                         </div>
                     </div>
                 </div>
@@ -1064,25 +1114,25 @@
                     <p class="text-gray-400 mb-4">A powerful screen recorder for Windows, developed by Saketh at BabxStudios.</p>
                     <div class="flex space-x-4">
                         <!-- YouTube -->
-                        <a href="https://youtube.com/@mr_bangaram_playz?si=mzqXWwECgpxmp-_6" target="_blank" class="text-gray-400 hover:text-white" aria-label="YouTube">
+                        <a href="https://www.youtube.com/channel/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="YouTube">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                             </svg>
                         </a>
                         <!-- Instagram -->
-                        <a href="https://www.instagram.com/mr_bangaram_playz/" target="_blank" class="text-gray-400 hover:text-white" aria-label="Instagram">
+                        <a href="https://www.instagram.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="Instagram">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
                             </svg>
                         </a>
                         <!-- Discord -->
-                        <a href="https://discord.gg/eDBmRg7Vns" target="_blank" class="text-gray-400 hover:text-white" aria-label="Discord">
+                        <a href="https://discord.gg/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="Discord">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                             </svg>
                         </a>
                         <!-- GitHub -->
-                        <a href="https://github.com/SaakethPandu" target="_blank" class="text-gray-400 hover:text-white" aria-label="GitHub">
+                        <a href="https://github.com/EXAMPLE" target="_blank" class="text-gray-400 hover:text-white" aria-label="GitHub">
                             <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                             </svg>
@@ -1283,7 +1333,7 @@
                             </a>
                             
                             <!-- Discord Support -->
-                            <a href="https://discord.gg/rDmSSS8DdR" target="_blank" class="w-full border border-indigo-500 text-indigo-400 px-6 py-4 rounded-xl font-semibold hover:bg-indigo-900 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center space-x-3">
+                            <a href="https://discord.gg/EXAMPLE" target="_blank" class="w-full border border-indigo-500 text-indigo-400 px-6 py-4 rounded-xl font-semibold hover:bg-indigo-900 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center space-x-3">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
                                 </svg>
@@ -1853,7 +1903,7 @@
 
         // Download functionality
         function simulateDownload(version = null) {
-            const downloadUrl = 'https://download1527.mediafire.com/0dzbbqz25gggdQ-B9IOiRxAGpurkyU29V0KL_Kat9oM-Zxw628D6nA8w83M2-Y3O0eOTkB0OTTZVFMRqgLZTNKL6ga71fru3NZ1K_XK14Pb2EX0Cgb-IR4X1vz5jRDlbBKOZV7O704i40XzjpzR4zzneE9Tt1kwJ83Sin28-3XdCEQ/966fdikiai2308z/babxrec+v1.0.2.exe';
+            const downloadUrl = 'https://release-assets.githubusercontent.com/github-production-release-asset/1031643127/474a242a-0fa1-4fd8-947f-b20ba76fd036?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-04T07%3A19%3A11Z&rscd=attachment%3B+filename%3Dbabxrec.beta.v1.0.1.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-08-04T06%3A18%3A20Z&ske=2025-08-04T07%3A19%3A11Z&sks=b&skv=2018-11-09&sig=%2B%2F5i4Wmx4Wk2W7RIGMjzQx3E5X5OQyIJhCBDupFvCsw%3D&jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc1NDI5MDE5MCwibmJmIjoxNzU0Mjg5ODkwLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.mLGoiQIFsGJUOaK8S-jSIcVQe_Qrq0qCLie6aMz6LzM&response-content-disposition=attachment%3B%20filename%3Dbabxrec.beta.v1.0.1.exe&response-content-type=application%2Foctet-stream';
             
             // Create temporary link and trigger download
             const link = document.createElement('a');
@@ -2062,11 +2112,5 @@
             
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a43632f7aa9a7d',t:'MTc1NDM3NTA2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ff22d360447fa9',t:'MTc1NTMyODQ3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
-
